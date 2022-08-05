@@ -1,0 +1,866 @@
+@import "./variables.scss";
+@import './custom.scss';
+@import '~@progress/kendo-theme-default/scss/all';
+body {
+    margin: 0;
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px !important;
+    // background-color: #F2F2F2 !important;
+}
+
+.footer {
+    font-size: 11px;
+    background: $white 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-top: 2rem;
+}
+
+.grid-heading {
+    font-size: 1rem;
+    color: $accent;
+}
+
+.blue-link {
+    color: #007bff !important;
+}
+
+.aws-amplify-authenticator {
+    --border-radius: 0px;
+    --amplify-primary-color: $accent;
+}
+
+.companyLogo  {
+    height: 85px;
+    margin-left: 0.4rem;
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+    background-color: $accent;
+}
+
+.header-container {
+    min-height: 86px;
+    position: relative;
+}
+
+.insurance-card {
+    #f1_container {
+        position: relative;
+        // margin: 10px auto;
+        // width: 450px;
+        // height: 281px;
+        z-index: 1;
+    }
+    #f1_container {
+        perspective: 1000;
+    }
+    #f1_card {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: all 1.0s linear;
+    }
+    #f1_container:hover #f1_card {
+        transform: rotateY(180deg);
+        box-shadow: -5px 5px 5px #aaa;
+    }
+    .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+    .face.back {
+        display: block;
+        transform: rotateY(180deg);
+        box-sizing: border-box;
+        padding: 10px;
+        color: white;
+        text-align: center;
+        // background-color: #aaa;
+    }
+}
+
+.tableText {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #93999e;
+}
+
+.header-details {
+    margin-top: -86px;
+    //margin-right: 0;
+    //margin-left: 0;
+    z-index: 100;
+    font: roboto !important;
+    background: linear-gradient(to right, #85c1f6 0%, $white 100%);
+    color: $accent !important;
+    .title {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $accent;
+    }
+    .headerText {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: $accent;
+    }
+    .right-border {
+        border-right: 1px solid $accent;
+    }
+    .notes {
+        height: 30px;
+        width: 140%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        border: 1px solid;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    .pageButton {
+        margin-top: 10px;
+        margin-right: 5px;
+    }
+    .headerButtonBlue {
+        margin-top: 10px;
+        margin-right: 5px;
+        color: $accent;
+    }
+}
+
+.infusion-page {
+    margin-left: 10px;
+    //margin-right: 0;
+    //margin-left: 0;
+    //z-index: 100;
+    margin-bottom: 50px;
+}
+.infusion-questions{   
+    .category {
+        font-size: 14px;
+        font-weight: 400;
+        color: $accent;
+        margin-bottom: 5px;
+    }
+    .question{
+        font-size: 12px;
+        font-weight: 500;
+        color: rgb(122, 122, 122);
+    }
+    .answer{
+        font-size: 14px;
+        font-weight: 600;
+        color: rgb(70, 70, 70);
+        margin-bottom: 10px;
+    }
+}
+
+
+.agent-title{
+    color: #2AA0FD !important;
+    font-size: 1.3rem;
+}
+
+.k-i-logout {
+    position: absolute;
+    color: #2AA0FD !important;
+    cursor: pointer;
+    right: 20px;
+    top: 25px;
+    &.portal {
+        top:0px
+    }
+}
+
+.k-icon-32 {
+    font-size: 32px; /* Sets icon size to 32px */
+}
+
+.k-icon-48 {
+    font-size: 48px; /* Sets icon size to 48px */
+}
+
+.k-icon-64 {
+    font-size: 64px; /* Sets icon size to 64px */
+}
+
+.patient-document-image {
+    border: 1px solid $accent;
+}
+
+.k-dialog {
+    max-height: calc(100% - 50px);
+}
+
+.patient-form .k-card {
+    // background-color: #F0F8FD;
+    height:100%
+}
+
+.patient-document .k-card {
+    background-color: #F0F8FD;
+    border-color: $accent
+}
+
+
+ul.document-pagination {
+    margin-top: 15px;
+    margin-bottom: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  ul.document-pagination li.page-item.active a.page-link {
+    color: #445565 !important;
+    background-color: #e3e7eb !important;
+    border-color: #ced4da !important;
+  }
+  ul.document-pagination a.page-link {
+    padding: 0.55rem 0.55rem;;
+    min-width: 3.5rem;
+    text-align: center;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+    color: #6b88a4;
+    font-weight: 900;
+    font-size: 1rem;
+  }
+  ul.document-pagination a.page-link:hover {
+    background-color: #f4f4f4;
+  }
+  .document-pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+    justify-content: center;
+}
+.react-pdf__Page__annotations {
+    display: none !important;
+}
+
+.doc-fixed-right {
+    position: fixed;
+    top: 220px;
+    right: -45px;
+    transform: rotate(90deg);
+    border-radius: 0px 0px 10px 10px !important;
+    border-color: $accent;
+    color: #f9f9f9;
+    background-color: #0f4022;
+    background-image: none;
+}
+
+
+.k-window {
+  z-index: 90 !important;
+}
+
+.k-overlay {
+    z-index: 89 !important;
+}
+
+.alera-care-app {
+    // display: flex;
+    // justify-content: center;
+    // align-items: top;
+    // width: max-content;
+    // min-height: 100vh;
+    // background-color: #F2F2F2 !important;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+}
+
+.content {
+    background-color: white !important;
+    margin-bottom: -51px;
+    // width: 100vw;
+}
+
+.agent-work-queue{
+    .k-card {
+        position: unset !important;
+    }
+}
+
+#clinicalNote, textarea{
+    width: 100% !important;
+}
+.header {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K");
+}
+
+.branding {
+    position: relative;
+    margin-bottom: var(--margin-bottom);
+    padding: 15px;
+    text-align: left;
+    display: inline-block;
+    border-radius: var(--border-radius);
+    box-shadow: 4px 4px 4px 0 rgba(119, 108, 108, 0.15);
+    box-sizing: border-box;
+    /* font-family: var(--font-family); */
+    width: 450px;
+    /* min-width: var(--min-width); */
+    background-color: white;
+    height: 469px;
+    margin-top: -15px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $accent;
+    //aliceblue  $accent   #d3e9ff
+    .branding__logo {
+        width: 500px;
+    }
+}
+
+.sign-in-bg {
+    // background-image: url("assets/images/login_bg.jpeg");
+    background-repeat: no-repeat;
+}
+
+.large-btn {
+    font-size: 25px;
+    padding: 5px 25px;
+}
+
+.fax-form-assignment {
+    background-color: #F0F8FD;
+    border: 1px solid $accent;
+    border-radius: 15px;
+}
+
+.inbound-existing-patient {
+    .k-header input[type='checkbox'] {
+        display: none;
+    }
+}
+
+.large-btn-width {
+    padding: 5px 25px;
+}
+
+.patient-tab {
+    .k-tabstrip-items {
+        .k-link {
+            padding: 12px 26px;
+        }
+    }
+}
+.a-grid__header {
+    background-color: $accent;
+    color: white;
+
+    div {
+        width: 200px;
+        background-color: #4696E7;
+        padding: 9px;
+    }
+}
+
+.a-grid {
+    .k-grid-header{
+        color: $accent;
+        background-color: #e8e8e8;
+    }
+    td  {
+        border: 0px !important;
+        border-bottom: 1px solid #afaaaa !important;
+    }
+    th.k-header  {
+        border-color: transparent !important;
+    }
+    tr.k-alt {
+        background-color: $white !important;
+    }
+}
+
+.k-avatar {
+    border-color: $accent;
+    color: $white;
+    background-color: $accent;
+}
+
+.k-i-information {
+    color: $white !important;
+    right: 5px;
+}
+
+.k-i-comment {
+    color: $white !important;
+    right: 5px;
+}
+.k-i-document-manager{
+    color: $white !important;
+    right: 5px;
+}
+
+.k-i-copy{
+    color: $white !important;
+    right: 5px;
+}
+
+.k-i-pencil{
+    color: $white !important;
+    right: 5px;
+}
+
+.k-i-print{
+    color: $white !important;
+    right: 5px;
+}
+
+.k-i-track-changes{
+    color: $white !important;
+    right: 5px;
+}
+
+.k-icon-29 {
+    font-size: 29px;
+}
+
+.k-panel {
+    padding: 0px 20px 20px !important;
+    background-color: #F0F8FD !important;
+}
+
+.k-content {
+    background-color: #F0F8FD !important;
+}
+
+
+
+/* MM */
+.k-form {
+    margin: 0px;
+}
+
+.k-tabstrip > .k-content {
+    padding: 10px 0 0 10px;
+    border-width: 0;
+}
+
+.k-tabstrip-top > .k-tabstrip-items {
+    border-bottom-width: 1px;
+    height: 35px;
+}
+
+.mt-02 {
+    margin-top: 0.2rem;
+}
+.mt-04 {
+    margin-top: 0.4rem;
+}
+.mt-06 {
+    margin-top: 0.6rem;
+}
+.mt-08 {
+    margin-top: 0.8rem;
+}
+.mt-10 {
+    margin-top: 1.0rem;
+}
+.mt-12 {
+    margin-top: 1.2rem;
+}
+.mt-14 {
+    margin-top: 1.4rem;
+}
+.mt-16 {
+    margin-top: 1.6rem;
+}
+.mt-18 {
+    margin-top: 1.8rem;
+}
+.mt-20 {
+    margin-top: 2.0rem;
+}
+.mt-22 {
+    margin-top: 2.2rem;
+}
+.mt-24 {
+    margin-top: 2.4rem;
+}
+
+.k-i-logout.portal {
+    z-index: 9999;
+}
+
+.important-text {
+    font-weight: bold;
+}
+
+.header-details-field-name {
+    font-weight: 400;
+    font-size: 0.6rem;
+    padding: 0 0 0.3rem 1.0rem;
+    color: #343a40;
+    border-top: 0px solid silver;
+}
+
+.project-name {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: $white;
+}
+
+.patient-search {
+    background-color: #F0F8FD;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+}
+
+.hamburger-icon {
+    background-image:  url('./../assets/images/hamburger-icon.svg');
+    background-repeat: no-repeat;
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    z-index: 9999;
+    //filter: invert(60%) sepia(76%) saturate(2951%) hue-rotate(187deg) brightness(95%) contrast(91%); // 4696E7
+    filter: invert(68%) sepia(17%) saturate(3690%) hue-rotate(167deg) brightness(109%) contrast(77%); // 4CC0E2
+}
+
+.hamburger-menu {
+    position: absolute;
+    right: 20px;
+    top: 65px;
+    width: 160px;
+    padding: 10px 30px;
+    background-color: #eeeeee;
+    z-index: 9999;
+}
+
+.hamburger-menu .row {
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+}
+
+.menu-username {
+    color: #4CC0E2;
+    font-weight: 700;
+    position: absolute;
+    top: 31px;
+    right: 80px;
+    z-index: 9999;
+}
+
+.k-card-body {
+    padding: 8px;
+}
+
+// [nn]
+.infusion-details {
+    font: roboto !important;
+    background: $white;
+    color: $accent !important;
+    .title {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $accent;
+    }
+    .headerText {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: $accent;
+    }
+    .notes {
+        height: 30px;
+        width: 140%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        border: 1px solid;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    .pageButton {
+        margin-top: 10px;
+        margin-right: 5px;
+    }
+    .headerButtonBlue {
+        margin-top: 10px;
+        margin-right: 5px;
+        color: $accent;
+    }
+}
+
+.infusion-HeaderRow {
+    font: roboto !important;
+    background: $accent;
+    color: $white !important;
+    .title {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $accent;
+    }
+    .headerText {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: $white;
+    }
+}
+
+.infusion-SubHeaderRow {
+    font: roboto !important;
+    background: $white;
+    color: $accent !important;
+    .title {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $accent;
+    }
+    .headerText {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: $white;
+    }
+}
+
+.infusion-SubHeaderRowGrey {
+    font: roboto !important;
+    background: #d9d9d9;
+    color: $white !important;
+    .title {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $accent;
+    }
+    .headerText {
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: $accent;
+        margin-left: 5px;
+    }
+}
+
+.infusion-details-field-name {
+    font-weight: 400;
+    font-size: 0.6rem;
+    padding: 0 0 0.3rem 1.0rem;
+    color: #343a40;
+}
+
+.infusion-grid {
+    .k-grid-header{
+        color: $accent;
+        background-color: #e8e8e8;
+        font-weight: 400;
+        font-size: 0.6rem;
+        padding: 0 0 0.3rem 1.0rem;
+    }
+    td  {
+        border: 0px !important;
+        border-bottom: 1px solid #afaaaa !important;
+    }
+    th.k-header  {
+        border-color: transparent !important;
+    }
+    tr.k-alt {
+        background-color: $white !important;
+    }
+}
+
+
+// [SY]
+.k-i-logout.infusionqueue {
+    z-index: 9999;
+}
+
+.grid-theme-heading {
+    height: 40px;
+    background-color: $accent;
+    margin: 0px;
+    color: $white;
+}
+.patient-portal {
+    .k-tabstrip-items  {
+        background-color: $accent;
+        .k-item {
+            background-color: $accent;
+            padding: 0 0px;
+            font-weight: 700;
+            font: Roboto !important;
+            font-size: 14px;
+        }
+    }
+    .k-tabstrip > .k-content {
+        padding: 0px;
+    }
+    .k-tabstrip-items .k-item:hover, .k-tabstrip-items .k-item.k-state-hover {
+        color: $white;
+    }
+    .k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
+        background-color: $white;
+        color:gray;
+    }
+    .k-tabstrip-top > .k-tabstrip-items {
+        height: 35px;
+    }
+    .bottom-tabstrip-container {
+        .k-tabstrip-items .k-item {
+            font-weight: 600;
+            padding: 0 25px;
+            font-size: 0.9rem;
+            color:$white;
+            border-right: 1px solid  #e3e7eb;
+        }
+        .k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
+            background-color: $accent;
+            font-size: 0.9rem;
+            color:#ff9900;
+        } 
+    }
+}
+.inventory-portal {
+    .k-tabstrip-items  {
+        background-color: $accent;
+        .k-item {
+            background-color: $accent;
+            padding: 0 65px;
+            font-weight: 600;
+            font: Roboto !important;
+            font-size: 1.1rem;
+        }
+    }
+    .k-tabstrip > .k-content {
+        padding: 0px;
+    }
+    .k-tabstrip-items .k-item:hover, .k-tabstrip-items .k-item.k-state-hover {
+        color: $white;
+    }
+    .k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
+        background-color: $white;
+        color:gray;
+    }
+    .k-tabstrip-top > .k-tabstrip-items {
+        height: 40px;
+    }
+    .second-tabstrip-container {
+        .k-tabstrip-items .k-item {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color:$white;
+            border-right: 1px solid white;
+        }
+        .k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
+            background-color: $accent;
+            font-size: 0.9rem;
+            color:#ff9900;
+        } 
+    }
+}
+
+
+// [MM]
+// .k-scheduler {
+//     height: 800px;
+// }
+.k-scheduler-toolbar {
+    z-index: auto;
+}
+
+.infusion-header {
+    background-color: $accent; 
+}
+
+.k-form-red .k-dialog-titlebar {
+    background-color: #f26363 !important;
+}
+
+
+// Infusion Stepper
+.k-icon-16 {
+    font-size: 16px; /* Sets icon size to 16px */
+}
+
+.k-step-link .k-icon {
+    font-size: 24px;
+    color: #000;
+}
+
+.k-step-link .step-label {
+    color: $accent;
+    font-weight: bold;
+    background-color: $accent;
+
+}
+
+.text-blue {
+    color: $accent; 
+}
+
+.text-orange {
+    color: $keshri
+}
+
+
+.k-tabstrip-items .k-link {
+    padding: 12px 20px;
+}
+
+// .k-animation-container {
+//     z-index: 10003 !important;
+// }
+
+
+.labelstyle {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    margin-left: 40px;
+}
+
+.panelInfusion {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    .panelInfusionInner{
+        background-color: #FFFFFF;
+        font-weight: 400;
+        font-size: 12px;
+    }
+}
+
+.infusionTable {
+    .table {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        width: 100%;
+        }
+    .th {
+        text-align: left !important;
+        padding: 8px;
+        font-size: 14px;
+        background-color: #e2e1e1 !important;
+    }
+    .td {
+        text-align: left !important;
+        padding: 8px;
+    }
+}
+
+.benfit-history-tab {
+    .k-animation-container {
+        height: 100vh;
+        z-index: 10003 !important;
+    }
+}
+
+// .benfit-invest-tabs {
+//     .k-animation-container {
+//         height: 100vh
+//     }
+// }
+.margin_left {
+    margin-left: 120px;
+}
+
+.margin_top {
+    margin-top: -45px;
+}

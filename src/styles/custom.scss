@@ -1,0 +1,256 @@
+$grid-columns: 12;
+$grid-gutter-width: 48px;
+$grid-column-width: 48px;
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$container-max-widths: ( sm: 540px, md: 720px, lg: 960px, xl: 1140px);
+.card {
+    background-color: $grid-alt-bg;
+    border-color: $grid-header-bg;
+    &.card-radius-12 {
+        border-radius: 12px;
+    }
+}
+
+.app-header {
+    // background-color: $gray-850;
+    background-color: #005282;
+    //background: #005282;
+    // background: -moz-linear-gradient(left, #005282, rgba(167, 178, 194, 1) 100%);
+    // background: -webkit-gradient(left top, right top, color-stop(0%, #005282), color-stop(100%, rgba(167, 178, 194, 1)));
+    // background: -webkit-linear-gradient(left, #005282, rgba(167, 178, 194, 1) 100%);
+    // background: -o-linear-gradient(left, #005282, rgba(167, 178, 194, 1) 100%);
+    // background: -ms-linear-gradient(left, #005282, rgba(167, 178, 194, 1) 100%);
+    // background: linear-gradient(to right, #005282, rgba(167, 178, 194, 1) 100%);
+    .logo {
+        // color: #4696E7;
+        color: aliceblue;
+        font-weight: normal;
+        font-size: 1.3rem;
+    }
+    .k-menu:not(.k-context-menu)>.k-item {
+        color: $white;
+    }
+}
+
+button {
+    color: $grid-header-bg;
+    border-radius: 5px !important;
+    background-color: #ffffff;
+    &.blue {
+        background-color: $grid-header-bg;
+        color: $grid-bg;
+        background-image: none;
+    }
+    &.red {
+        background-color: #DE4952;
+        border: #c94747;
+        color: $grid-bg;
+        background-image: none;
+    }
+    &.orange {
+        background-color: #FFC27F;
+        border: #f26363;
+        color: $grid-bg;
+        background-image: none;
+    }
+    &.pageButton {
+        background-color: #4696E7;
+        color: #ffffff;
+        font-weight: 500;
+        background-image: none;
+        border: #4696E7;
+        width: 130px !important;
+        height: 30px;
+    }
+    &.pageTab {
+        background-color: #005282;
+        color: #FFFFFF;
+    }
+    &.gridButton {
+        border-radius: 0px !important;
+        background-color: #ffffff !important;
+        font-weight: 500;
+        color: #005282 !important;
+    }
+    &.active {
+        background-color: #4696E7 !important;
+        color: #ffffff !important;
+        font-weight: 500;
+        background-image: none;
+        border: #4696E7;
+        width: 130px !important;
+        height: 30px;
+    }
+    &.headerButton2 {
+        background-color: #005282 !important;
+        color: #ffffff !important;
+        font-weight: 500;
+        background-image: none;
+        border: #005282 !important;
+        width: 130px !important;
+        height: 40px;
+        margin-right: 5px;
+    }
+    &.headerButton1 {
+        background-color: #4696E7;
+        color: #ffffff;
+        font-weight: 500;
+        background-image: none;
+        border: #4696E7;
+        width: 130px !important;
+        height: 40px;
+    }
+    
+}
+
+// main tab strip
+$tabstrip-bg: #ffffff;
+//$tabstrip-text: $gray-500;
+$tabstrip-item-text: $gray-850;
+$tabstrip-item-bg: #FFFFFF;
+$tabstrip-item-padding-y: 12px;
+$tabstrip-item-selected-bg: #005282;
+$tabstrip-item-selected-text: #ffffff;
+$tabstrip-content-bg: #F0F8FD;
+$tabstrip-item-border-radius: 0px;
+
+.navBar1 {
+    font: SansSerif !important;
+    font-weight: 800;
+    padding: 0;
+    margin: 0;
+}
+
+.navBar2 {
+    //font-weight: 900 !important;
+    background-color: #005282;
+    padding: 0px 5px;
+    font: SansSerif !important;
+}
+
+.tabText {
+    font-weight: 400;
+    font: Roboto !important;
+}
+.pageTitle {
+    color: #ff9900;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 10px;
+    //margin-left: 10px;
+}
+h3,
+h2,
+h1,
+h5,
+h6 {
+    color: $grid-header-bg;
+    font-weight: 500;
+    font: roboto !important;
+    &.pageTitle {
+        color: #ff9900;
+        font-weight: 600;
+        font-size: large;
+    }
+    &.pageSubHead {
+        font-weight: 600;
+        font-size: medium;
+    }
+}
+
+h4 {
+    color: $grid-header-bg;
+    font: roboto !important;
+    font-weight: 600;
+    font-size: medium;
+}
+
+/* Kendo Switch 
+.k-widget {
+    font-size: 14px !important;
+}*/
+
+.k-grid-header {
+    padding: 3px;
+}
+
+.k-radio.blue {
+    color: blue;
+}
+
+.k-radio.patient-radio {
+    background: white;
+    border-color: grey;
+    box-shadow: none
+}
+
+
+/*
+   a. Define All usefulld dependencies
+   b. 
+*/
+
+.k-tabstrip {
+    .k-animation-container-relative {
+        width: 100%;
+    }
+}
+
+.dialog-Fax {
+    border-color: inherit;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F0F8FD !important;
+}
+
+.k-dialog-titlebar {
+    border-color: inherit;
+    color: #ffffff;
+    background-color: #4696E7 !important;
+}
+
+
+.k-icon {
+    color: #005282 !important;
+}
+
+.k-iconOrange {
+    color: #f58142 !important;
+}
+
+.k-iconWhite {
+    color: #ffffff !important;
+}
+
+.patient-content {
+    .k-content {
+        padding: 6px 0px !important;
+    }
+}
+
+.portal-container {
+    height: 100vh;
+}
+
+.side-bar {
+    background-color: $accent;
+    color: white !important;
+    min-height: 100vh;
+}
+
+.main-content {
+    //margin-left: -15px;
+}
+
+
+.error-message {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.work-in-progress .k-master-row td {
+    height: 30px;
+}
+
+.dialog-script {
+    background-color: #FFFFFF;
+}

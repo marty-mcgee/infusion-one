@@ -1,0 +1,4807 @@
+type ACLRule {
+	role: String
+	rule: String
+}
+
+input AcquireLocker {
+	agentId: ID!
+	patientId: ID!
+}
+
+type Activity {
+	id: ID!
+	caseId: ID!
+	activityName: String!
+	agentId: String!
+	patientId: String!
+	description: String
+	loggingTime: AWSDateTime
+	attachedData: AWSJSON
+}
+
+input AddCreatePatientProfile {
+	adverseEvents: [AdverseEventInput]
+	careGiver: CareGiverInfoInput
+	clinicInfo: ClinicalInfoInput
+	consentInfo: ConsentInfoInput
+	discontinuations: DiscontinuationInput
+	insuranceInfo: InsuranceInput
+	patientInfo: PatientInfoInput
+}
+
+input AddUpdateAdverseEventInfo {
+	adverseEvents: [AdverseEventInput]
+	agentId: ID!
+	patientId: ID!
+}
+
+input AddUpdateAllergy {
+	agentId: ID!
+	allergies: [AllergyInput]
+	patientId: ID!
+}
+
+input AddUpdateBenefitInvestigation {
+	agentId: ID!
+	patientId: ID!
+	benefitCheckingByReferral: BenefitCheckingByReferralInput
+}
+
+input AddUpdateCareGiverInfo {
+	agentId: ID!
+	careGiver: CareGiverInfoInput
+	patientId: ID!
+}
+
+input AddUpdateClinicalAllergies {
+	agentId: ID!
+	allergies: [AllergyInput]
+	patientId: ID!
+}
+
+input AddUpdateClinicalDrugHistory {
+	agentId: ID!
+	drugHistory: [DrugUsageInput]
+	patientId: ID!
+}
+
+input AddUpdateClinicalInfo {
+	agentId: ID!
+	clinicInfo: ClinicalInfoInput
+	patientId: ID!
+}
+
+input AddUpdateConsentInfo {
+	agentId: ID!
+	consentInfo: ConsentInfoInput
+	patientId: ID!
+}
+
+input AddUpdateDiscontinuationInfo {
+	agentId: ID!
+	discontinuations: DiscontinuationInput
+	patientId: ID!
+}
+
+input AddUpdateFaxInfo {
+	agentId: ID!
+	faxInfo: FaxInfoInput
+	patientId: ID!
+}
+
+input AddUpdateHCPProfile {
+	agentId: ID!
+	patientId: ID!
+	hcpProfile: [PrescriberInfoInput!]!
+}
+
+input AddUpdateInsuranceInfo {
+	agentId: ID!
+	insuranceInfo: InsuranceInput!
+	patientId: ID!
+}
+
+input AddUpdateInvestigationStatusInput {
+	agentId: ID!
+	investigationStatus: InvestigationStatusInput
+	patientId: ID!
+}
+
+input AddUpdateNotes {
+	patientId: ID!
+	agentId: ID!
+	notes: [NoteInput!]!
+}
+
+input AddUpdatePatientDocs {
+	patientId: ID!
+	agentId: ID!
+	patientDocuments: [PatientDocumentInput!]!
+}
+
+input AddUpdatePatientInfo {
+	agentId: ID!
+	patientId: ID!
+	patientInfo: PatientInfoInput
+}
+
+input AddUpdatePrescriberNotes {
+	agentId: ID!
+	notes: [NoteInput]
+	patientId: ID!
+}
+
+input AddUpdatePriorAuthChecking {
+	agentId: ID!
+	patientId: ID!
+	priorAuthInfo: PriorAuthCheckingInput!
+}
+
+input AddUpdatePriorAuthDenialTracking {
+	agentId: ID!
+	denialTracking: PriorAuthDenialTrackingInput!
+	patientId: ID!
+}
+
+input AddUpdatePriorAuthFreeDrug {
+	agentId: ID!
+	freeDrug: FreeDrugInput!
+	patientId: ID!
+}
+
+type Address {
+	city: String
+	state: String
+	streetName: String
+	county: String
+	zip: String
+}
+
+input AddressInput {
+	city: String
+	state: String
+	streetName: String
+	county: String
+	zip: String
+}
+
+type AdminHistory {
+	additionalInfo: String
+	date: AWSDate
+	status: String
+}
+
+enum AdminSite {
+	HCP
+	OTHER
+}
+
+type Administration {
+	adminHistory: [AdminHistory]
+	infusionCenters: [InfusionCenter]
+}
+
+type AdverseEvent {
+	date: AWSDate
+	drugName: String
+	details: String
+}
+
+input AdverseEventInput {
+	date: AWSDate
+	drugName: String
+	details: String
+}
+
+type AgentResp {
+	agentId: String
+	roles: [Role]
+	aclRules: [ACLRule]
+}
+
+enum AlertCode {
+	GREEN
+	YELLOW
+	RED
+}
+
+type AlertLevels {
+	intake: AlertCode
+	bi: AlertCode
+	pa: AlertCode
+	updateDate: AWSDateTime
+	updatedBy: String
+}
+
+input AlertLevelsInput {
+	intake: AlertCode
+	bi: AlertCode
+	pa: AlertCode
+	updateDate: AWSDateTime
+	updatedBy: String
+}
+
+type Allergy {
+	date: AWSDate
+	drugName: String
+	reaction: String
+}
+
+input AllergyInput {
+	date: AWSDate
+	drugName: String
+	reaction: String
+}
+
+type AllergyRecord {
+	recordNumber: Int
+	allergen: String
+	reaction: String
+	entered: AWSDate
+}
+
+input AllergyRecordInput {
+	recordNumber: Int
+	allergen: String
+	reaction: String
+	entered: AWSDate
+}
+
+type AlternativeCoverage {
+	bridgeCoverage: Boolean
+	contactMethod: String
+	copayCardNumber: String
+	endDate: String
+	startDate: String
+}
+
+type AmountDetail {
+	deductibleType: DeductibleType
+	networkStatus: NetworkStatus
+	totalDeductibleAmount: Float
+	metDeductible: Usage
+	totalOOPAmount: Float
+	metOOP: Usage
+}
+
+input AmountDetailInput {
+	deductibleType: DeductibleType
+	networkStatus: NetworkStatus
+	totalDeductibleAmount: Float
+	metDeductible: UsageInput
+	totalOOPAmount: Float
+	metOOP: UsageInput
+}
+
+type ApprovalInfo {
+	priorAuthNumber: String
+	serviceFrom: AWSDate
+	serviceTo: AWSDate
+	numberOfApprovedUnits: Int
+	numberOfApprovedVisits: Int
+	frequency: Frequency
+}
+
+input ApprovalInfoInput {
+	priorAuthNumber: String
+	serviceFrom: AWSDate
+	serviceTo: AWSDate
+	numberOfApprovedUnits: Int
+	numberOfApprovedVisits: Int
+	frequency: FrequencyInput
+}
+
+enum ApprovalStatus {
+	PENDING
+	APPROVED
+	NOT_APPROVED
+}
+
+type AssociatedBICheckingForPA {
+	selectedGroupId: String
+	selectedLocationId: String
+	selectedProviderId: String
+}
+
+type BIUpdateRecord {
+	recordId: String
+	orderTimeStamp: AWSDateTime
+	agentId: String
+	insuranceType: String
+	insurancePlan: String
+	drugName: String
+	updatedBenefitChecking: BenefitCheckingByReferralResp
+	verificationDate: AWSDate
+}
+
+input BIUpdateRecordInput {
+	recordId: String
+	orderTimeStamp: AWSDateTime
+	agentId: String
+	insuranceType: String
+	insurancePlan: String
+	drugName: String
+	updatedBenefitChecking: BenefitCheckingByReferralRespInput
+	verificationDate: AWSDate
+}
+
+type BenefitCheckingByPlan {
+	insuranceKey: String
+	groupId: String
+	billingTaxId: String
+	billingNPINumber: String
+	policyId: String
+	policy: InsurancePolicy
+	paRequired: Boolean
+	priorAuthorization: PreparationDetail
+	predeterminationNeeded: Boolean
+	predetermination: PreparationDetail
+	callCompletionTime: AWSDateTime
+	claims: Claim
+	selectedGroupId: String
+	selectedLocationId: String
+	selectedProviderId: String
+	selectedBillingTaxId: String
+	selectedBillingNPI: String
+	billingTaxIdForOutOfNetwork: String
+	billingNPIForOutOfNetwork: String
+	billingOverrideReason: String
+	verifiedDate: AWSDate
+	callReferenceNumber: String
+	isCompleted: Boolean
+}
+
+input BenefitCheckingByPlanInput {
+	insuranceKey: String!
+	groupId: String
+	billingTaxId: String
+	billingNPINumber: String
+	policyId: String
+	policy: InsurancePolicyInput
+	paRequired: Boolean!
+	priorAuthorization: PreparationDetailInput
+	predeterminationNeeded: Boolean
+	predetermination: PreparationDetailInput
+	callCompletionTime: AWSDateTime
+	claims: ClaimInput
+	selectedGroupId: String
+	selectedLocationId: String
+	selectedProviderId: String
+	selectedBillingTaxId: String
+	selectedBillingNPI: String
+	billingTaxIdForOutOfNetwork: String
+	billingNPIForOutOfNetwork: String
+	billingOverrideReason: String
+	verifiedDate: AWSDate
+	callReferenceNumber: String
+	isCompleted: Boolean!
+}
+
+type BenefitCheckingByReferral {
+	referralId: String
+	checkings: [BenefitCheckingByPlan]
+	welcomeCalls: [CallRecord]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+}
+
+input BenefitCheckingByReferralInput {
+	referralId: String!
+	checking: BenefitCheckingByPlanInput
+	welcomeCalls: [CallRecordInput]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+}
+
+type BenefitCheckingByReferralResp {
+	referralId: String
+	checking: BenefitCheckingByPlan
+	welcomeCalls: [CallRecord]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+}
+
+input BenefitCheckingByReferralRespInput {
+	referralId: String
+	checking: BenefitCheckingByPlanInput
+	welcomeCalls: [CallRecordInput]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+}
+
+type BenefitInvestigation {
+	benefitCheckings: [BenefitCheckingByReferral]
+	updateHistory: [BIUpdateRecord]
+}
+
+input BenefitInvestigationInput {
+	benefitCheckings: [BenefitCheckingByReferralInput]
+	updateHistory: [BIUpdateRecordInput]
+}
+
+type BillingInfo {
+	groupId: String
+	locationId: String
+	providerId: String
+	inNetworkTIN: String
+	inNetworkNPI: String
+	outOfNetworkTIN: String
+	outOfNetworkNPI: String
+}
+
+input BillingInfoInput {
+	groupId: String
+	locationId: String
+	providerId: String
+	inNetworkTIN: String
+	inNetworkNPI: String
+	outOfNetworkTIN: String
+	outOfNetworkNPI: String
+}
+
+input BridgeInput {
+	activeBridgeEnrollment: Boolean
+	activePAPEnrollment: Boolean
+	isInsuredBy: InsuranceType
+	newToTherapy: Boolean
+	patientOnLabel: Boolean
+}
+
+type CallRecord {
+	callTime: AWSDateTime
+	agentId: String
+	answered: Boolean
+}
+
+input CallRecordInput {
+	callTime: AWSDateTime
+	agentId: String
+	answered: Boolean
+}
+
+input CancelScheduleEventInput {
+	id: ID!
+	agentId: ID!
+	reason: String!
+	notes: String
+}
+
+input CancelTreatmentInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	reason: String!
+	notes: String
+}
+
+type CareGiverInfo {
+	address: Address
+	email: AWSEmail
+	firstName: String
+	lastName: String
+	phone: AWSPhone
+	preferredContactMethod: [String]
+}
+
+input CareGiverInfoInput {
+	address: AddressInput
+	email: AWSEmail
+	firstName: String!
+	lastName: String!
+	phone: AWSPhone
+	preferredContactMethod: [String]
+}
+
+type Case {
+	logs(
+		filter: ModelActivityFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelActivityConnection
+	workItems(
+		startTime: ModelStringKeyConditionInput,
+		filter: ModelWorkItemFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelWorkItemConnection
+	statusOfStages: [Stage]
+	caseId: ID!
+	caseStatus: CaseStatus
+	currentAssignedAgentId: String
+	description: String
+	patientId: ID
+	agentId: ID
+	documentURI: String
+	alertLevels: AlertLevels
+	statusDetails: StatusDetails
+	source: String
+	isLocked: Boolean
+	lockedAt: AWSDateTime
+	lockedBy: String
+	caseType: CaseType
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type CaseLocker {
+	caseId: ID!
+	lockedAt: AWSDateTime!
+	expirationAt: Int!
+	lockedBy: String
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+enum CaseStage {
+	ADMINISTRATION
+	SCHEDULE
+	BENEFIT_INVESTIGATION
+	ENROLLMENT
+	INTAKE
+	PAP
+	PRIOR_AUTHORIZATION
+	RE_VERIFICATION
+	INBOUNDFAX
+}
+
+enum CaseStatus {
+	BLOCKED
+	CLOSED
+	COMPLETED
+	CREATED
+	IN_PROGRESS
+}
+
+enum CaseType {
+	INBOUND_WORK
+	WORK_IN_PROGRESS
+}
+
+type Chair {
+	id: ID!
+	name: String
+	description: String
+}
+
+input ChairInput {
+	id: ID!
+	name: String
+	description: String
+}
+
+type ChairState {
+	chairId: String
+	patientLastName: String
+	patientFirstName: String
+	orderName: String
+	arrivalTime: AWSDateTime
+}
+
+type ChairStateResp {
+	statusCode: String!
+	message: String
+	chairStates: [ChairState]
+}
+
+type Claim {
+	claimAddress: Address
+	timelyFilling: Int
+	results: String
+}
+
+type ClaimDetail {
+	claimedAt: AWSDateTime
+	claimDetail: AWSJSON
+}
+
+input ClaimDetailInput {
+	claimedAt: AWSDateTime
+	claimDetail: AWSJSON
+}
+
+input ClaimInput {
+	claimAddress: AddressInput
+	timelyFilling: Int
+	results: String
+}
+
+type ClinicalInfo {
+	orderApproved: Boolean
+	orderDenied: Boolean
+	reason: String
+	expirationDateOfApproval: AWSDate
+}
+
+input ClinicalInfoInput {
+	orderApproved: Boolean
+	orderDenied: Boolean
+	reason: String
+	expirationDateOfApproval: AWSDate
+}
+
+type ClinicalNote {
+	date: AWSDate
+	agentName: String
+	clinicalNote: String
+}
+
+input ClinicalNoteInput {
+	date: AWSDate
+	agentName: String
+	clinicalNote: String
+}
+
+type CommunicationHistory {
+	id: ID!
+	patientId: String
+	agentId: String
+	caseId: String
+	eventTime: String
+	updateTime: AWSDateTime
+	channel: ContactMethod
+	fromEntity: String
+	toEntity: String
+	description: String
+	reference: String
+	attachment: [String]
+	purpose: String
+	direction: Direction
+	status: CommunicationStatus
+	faxId: String
+	emailCCList: [AWSEmail]
+	subject: String
+	agentEmail: AWSEmail
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type CommunicationInfo {
+	email: AWSEmail
+	fax: AWSPhone
+	phone: AWSPhone
+}
+
+enum CommunicationStatus {
+	COMPLETED
+	FAILED
+	QUEUED
+	CANCELLED
+	INITIATED
+}
+
+type Condition {
+	medication: String
+	notes: String
+}
+
+input ConditionInput {
+	medication: String
+	notes: String
+}
+
+type ConsentInfo {
+	documentType: String
+	date: AWSDate
+	documentName: String
+}
+
+input ConsentInfoInput {
+	documentType: String
+	documentName: String
+	date: AWSDate
+}
+
+type Contact {
+	contactMethod: [String]
+	date: AWSDateTime
+	notes: String
+}
+
+type ContactDetail {
+	firstName: String
+	lastName: String
+	relationship: String
+	phone: AWSPhone
+}
+
+input ContactDetailInput {
+	firstName: String
+	lastName: String
+	relationship: String
+	phone: AWSPhone
+	preferredLanguage: Language
+}
+
+input ContactInput {
+	contactMethod: [String]
+	date: AWSDateTime
+	notes: String
+}
+
+enum ContactMethod {
+	PHONE
+	FAX
+	EMAIL
+	MAIL
+	PORTAL
+}
+
+enum ContactTime {
+	MORNING
+	AFTERNOON
+	EVENING
+	ANYTIME
+}
+
+enum ContactType {
+	PATIENT
+	CAREGIVER
+	EITHER
+}
+
+input CreateActivityInput {
+	id: ID
+	caseId: ID!
+	activityName: String!
+	agentId: String!
+	patientId: String!
+	description: String
+	loggingTime: AWSDateTime
+	attachedData: AWSJSON
+}
+
+input CreateEventInput {
+	id: ID
+	title: String
+	status: EventStatus!
+	createdBy: ID
+	updatedBy: ID
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	locationId: ID
+	chairId: ID
+	patientId: ID
+	referralId: String
+	providerId: ID
+	agentId: ID
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone
+	endTimeZone: TimeZone
+	reason: String
+	startTimestamp: Int
+	endTimestamp: Int
+	productOrderStatus: ProductOrderStatus!
+	adminSequenceNumber: Int
+	eligibilityStatus: EligibilityStatus
+}
+
+input CreateGroupAICInput {
+	id: ID
+	name: String
+	taxId: ID!
+	state: String!
+	billingAddress: AddressInput
+	phoneNumber: AWSPhone
+	faxNumber: AWSPhone
+}
+
+input CreateGroupInsurerLocationProviderAICInput {
+	id: ID
+	groupId: ID!
+	locationId: ID!
+	insurerId: ID
+	providerId: ID
+	insurerPlanId: String
+	insurerPIN: String
+	locationNPI: String
+	locationPTAN: String
+	locationEffectiveDate: AWSDate
+	locationEndDate: AWSDate
+	locationStatus: Status
+	providerEffectiveDate: AWSDate
+	providerEndDate: AWSDate
+	providerStatus: Status
+	providerPTAN: String
+	notes: String
+}
+
+input CreateInsurerAICInput {
+	id: ID
+	name: String!
+	taxId: String
+	insurerType: String
+	billingAddress: AddressInput
+	mainPhoneNumber: AWSPhone
+}
+
+input CreateLocationAICInput {
+	id: ID
+	locationName: String!
+	address: AddressInput
+	state: String
+	county: String
+	notes: [ClinicalNoteInput]
+	billingAddress: AddressInput
+	chairs: [ChairInput]
+	timeZone: String
+	officeHours: [OfficeHourInput]
+	holidays: [AWSDate]
+	specialTimeSlots: [OfficeHourInput]
+}
+
+input CreatePatientBucketInput {
+	agentId: ID!
+	dob: AWSDate!
+	patientFirstName: String!
+	homePhoneNumber: String!
+	patientLastName: String!
+	patientDocuments: [PatientDocumentInput]
+}
+
+input CreatePatientProfile {
+	agentId: ID!
+	patientId: ID!
+	patientProfile: AddCreatePatientProfile!
+}
+
+input CreatePatientToPrescriberInput {
+	patientId: ID!
+	prescriberId: ID!
+}
+
+input CreatePayerInput {
+	id: ID
+	planName: String!
+	insurerId: ID!
+	insurerName: String!
+	tradingPatnerId: String
+	providerPhone: AWSPhone
+	claimAddress: AddressInput
+	electronicPayerId: String
+	timelyFillingINN: Int
+	timelyFillingOON: Int
+	externalId: String
+}
+
+input CreatePrescriberInfoInput {
+	medicalSpecialty: String
+	officeContactFirstName: String
+	officeContactLastName: String
+	siteInstitutionName: String
+	taxIDNumber: String
+	officeEmail: AWSEmail
+	officeAddresses: AddressInput
+	officePhoneNumber: AWSPhone
+	officeFaxNumber: AWSPhone
+	preferredPrescriberContactMethod: ContactMethod
+	prescriberFirstName: String
+	prescriberMiddleName: String
+	prescriberLastName: String
+	NPINumber: ID!
+	additionalOfficeAddresses: [AddressInput]
+	HINNumber: String
+	officeContactName: String
+	notes: [NoteInput]
+}
+
+input CreateProductInput {
+	productId: ID!
+	productName: String!
+	vendor: String
+	price: Float
+	status: String
+	strength: String
+	dosing: String
+	route: RouteType
+	unitOfMeas: DosageUnit
+	frequency: String
+	scheduledAllotment: String
+	premedications: [PreMedicationInput]
+	typeOfProduct: ProductType
+}
+
+input CreateProviderAICInput {
+	providerNPI: ID!
+	firstName: String
+	lastName: String
+	middleName: String
+	suffix: Suffix
+	cignaId: String
+	unitedId: String
+	aetnaId: String
+	sex: Sex
+	type: ProfessionalType
+}
+
+input CreateReferralOrderInput {
+	agentId: ID!
+	patientId: ID!
+	drugReferral: DrugReferralInput!
+}
+
+input CreateScheduleEventInput {
+	title: String!
+	status: EventStatus
+	createdBy: ID!
+	updatedBy: ID
+	startTime: AWSDateTime!
+	endTime: AWSDateTime!
+	locationId: ID!
+	chairId: ID!
+	patientId: ID!
+	referralId: String!
+	providerId: ID!
+	agentId: ID!
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone
+	endTimeZone: TimeZone
+	adminSequenceNumber: Int!
+}
+
+input CreateWorkItemInput {
+	id: ID
+	caseId: ID!
+	work: Task!
+	workStatus: TaskStatus
+	createdBy: String!
+	assignedTo: String!
+	patientId: String
+	description: String
+	referralId: String
+	endTime: AWSDateTime
+	startTime: AWSDateTime!
+	targetTime: AWSDateTime
+	processId: String
+	currentStep: String
+	followupDate: AWSDate
+	attachedData: AWSJSON
+	priority: Int
+	groupQueueId: GroupQueue
+	workHistory: [WorkRecordInput]
+}
+
+enum DatePeriod {
+	DAY
+	WEEK
+	MONTH
+	QUARTER
+	YEAR
+}
+
+input DateRange {
+	startDate: AWSDate!
+	endDate: AWSDate!
+}
+
+enum DeductibleType {
+	DOUBLE
+	FAMILY
+	SINGLE
+}
+
+input DeleteActivityInput {
+	id: ID!
+}
+
+input DeleteEventInput {
+	id: ID!
+}
+
+input DeleteGroupAICInput {
+	id: ID!
+}
+
+input DeleteGroupInsurerLocationProviderAICInput {
+	id: ID!
+}
+
+input DeleteInsurerAICInput {
+	id: ID!
+}
+
+input DeleteLocationAICInput {
+	id: ID!
+}
+
+input DeletePatientBucketInput {
+	patientId: ID!
+	agentId: ID!
+}
+
+input DeletePatientToPrescriberInput {
+	patientId: ID!
+	prescriberId: ID!
+}
+
+input DeletePayerInput {
+	id: ID!
+}
+
+input DeletePrescriberInfoInput {
+	NPINumber: ID!
+}
+
+input DeleteProductInput {
+	productId: ID!
+}
+
+input DeleteProviderAICInput {
+	providerNPI: ID!
+}
+
+input DeleteWorkItemInput {
+	id: ID!
+}
+
+input DenialInfoInput {
+	denialReason: String
+}
+
+enum Destination {
+	AGENT
+	QUEUE
+}
+
+type DiluentRecord {
+	recordNumber: Int
+	diluent: String
+	quantity: Int
+	lot: String
+	expiration: AWSDate
+}
+
+input DiluentRecordInput {
+	recordNumber: Int
+	diluent: String
+	quantity: Int
+	lot: String
+	expiration: AWSDate
+}
+
+enum Direction {
+	INBOUND
+	OUTBOUND
+}
+
+type Discontinuation {
+	date: AWSDate
+	notes: String
+	reasons: [DiscontinuationReason]
+	patientStartedTherapy: Boolean
+}
+
+input DiscontinuationInput {
+	date: AWSDate
+	notes: String
+	reasons: [DiscontinuationReasonInput]
+	patientStartedTherapy: Boolean
+}
+
+type DiscontinuationReason {
+	reasonType: ReasonType
+	details: String
+}
+
+input DiscontinuationReasonInput {
+	reasonType: ReasonType
+	details: String
+}
+
+enum DosageUnit {
+	kg
+	mg
+	ml
+}
+
+type DrugRecord {
+	recordNumber: Int
+	ndc: String
+	vial: String
+	strength: String
+	uom: String
+	route: RouteType
+	quantity: Int
+	lot: String
+	expiration: AWSDate
+}
+
+input DrugRecordInput {
+	recordNumber: Int
+	ndc: String!
+	vial: String!
+	strength: String!
+	uom: String!
+	quantity: Int!
+	route: RouteType
+	lot: String!
+	expiration: AWSDate
+}
+
+type DrugReferral {
+	referralId: ID!
+	drugId: String
+	drugName: String
+	referralOrder: Order
+	orderNotes: OrderNotes
+	clinical: ClinicalInfo
+	adverseEvent: [AdverseEvent]
+	discontinuation: Discontinuation
+	prescriberId: String
+	drugType: DrugType
+	patientHasStartedTherapy: Boolean
+	noOfTreatments: Int
+	firstTreatmentDate: AWSDate
+	lastTreatmentDate: AWSDate
+	inventorySource: InventorySource
+	specialPharmName: String
+	specialPharmPhoneNumber: String
+	referralApproved: Boolean
+	scheduling: SchedulingType
+	archiveOrder: Boolean
+	reasonForArchiving: ReasonArchivingOrder
+	isCompleted: Boolean
+	orderTimeStamp: AWSDateTime
+	approvedDosage: String
+}
+
+input DrugReferralInput {
+	referralId: ID!
+	drugId: String!
+	drugName: String!
+	referralOrder: OrderInput!
+	orderNotes: OrderNotesInput
+	clinical: ClinicalInfoInput
+	adverseEvent: [AdverseEventInput]
+	discontinuation: DiscontinuationInput
+	prescriberId: String
+	drugType: DrugType
+	patientHasStartedTherapy: Boolean
+	noOfTreatments: Int
+	firstTreatmentDate: AWSDate
+	lastTreatmentDate: AWSDate
+	inventorySource: InventorySource
+	specialPharmName: String
+	specialPharmPhoneNumber: String
+	referralApproved: Boolean
+	scheduling: SchedulingType
+	archiveOrder: Boolean
+	reasonForArchiving: ReasonArchivingOrder
+	isCompleted: Boolean!
+	orderTimeStamp: AWSDateTime
+	approvedDosage: String
+}
+
+enum DrugType {
+	PRIMARY
+	SECONDARY
+}
+
+type DrugUsage {
+	currentlyTaking: Boolean
+	drugName: String
+	whyStopped: String
+}
+
+input DrugUsageInput {
+	currentlyTaking: Boolean!
+	drugName: String!
+	whyStopped: String
+}
+
+enum EligibilityStatus {
+	ACTIVE
+	IN_ACTIVE
+	NOT_CHECKED
+}
+
+type Event {
+	id: ID!
+	title: String
+	status: EventStatus!
+	createdBy: ID
+	updatedBy: ID
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	locationId: ID
+	chairId: ID
+	patientId: ID
+	referralId: String
+	providerId: ID
+	agentId: ID
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone
+	endTimeZone: TimeZone
+	reason: String
+	startTimestamp: Int
+	endTimestamp: Int
+	productOrderStatus: ProductOrderStatus!
+	adminSequenceNumber: Int
+	eligibilityStatus: EligibilityStatus
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type EventForOrder {
+	eventId: ID!
+	appointmentDate: AWSDateTime
+	appointmentStatus: String
+	locationId: String
+	location: String
+	patientId: String
+	patientLastName: String
+	patientFirstName: String
+	referralId: String
+	orderName: String
+	calcDose: String
+	unitOfMeasure: String
+	freeDrug: Boolean
+	orderStatus: ProductOrderStatus
+}
+
+type EventOutput {
+	id: ID!
+	title: String
+	status: EventStatus
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	locationId: ID
+	chairId: ID
+	patientId: ID
+	referralId: String
+	providerId: ID
+	agentId: ID
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone
+	endTimeZone: TimeZone
+	locationName: String
+	patientLastName: String
+	patientFirstName: String
+	agentLastName: String
+	agentFirstName: String
+	referralName: String
+}
+
+enum EventStatus {
+	CHECKED_IN
+	CONFIRMED
+	SCHEDULED
+	CANCELLED
+	RESCHEDULED
+	CANCELLED_INFUSION
+	ORDER_REQUESTED
+	COMPLETED_INFUSION
+}
+
+type ExternalId {
+	patientId: ID!
+	wfId: String
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type FaxInfo {
+	coverSheetLocation: String
+	faxNumber: String
+	myFaxNumber: String
+}
+
+input FaxInfoInput {
+	coverSheetLocation: String
+	faxNumber: String
+	myFaxNumber: String
+}
+
+input FaxInput {
+	agentId: String!
+	patientId: String!
+	outboundFax: AWSPhone!
+	from: String
+	attention: String
+	sendToPhone: AWSPhone
+	faxNotes: String
+	faxBody: String!
+	faxAttachment: [String!]!
+	emailCCList: [AWSEmail]
+	subject: String!
+	faxType: FaxTemplate!
+}
+
+type FaxPDFResp {
+	statusCode: String!
+	filePath: String
+	error: String
+}
+
+enum FaxTemplate {
+	AuthorizationDenial
+	DocumentRequest
+	General
+	InsuranceVerification
+	MedicareDenial
+	NewReferralConfirmation
+	Refill
+	TreatmentNote
+}
+
+type FollowUp {
+	agentName: String
+	clinicalNotes: String
+	date: AWSDateTime
+	preferredMethod: [String]
+}
+
+input FollowUpInput {
+	agentName: String
+	clinicalNotes: String
+	date: AWSDateTime
+	preferredMethod: [String]
+}
+
+type FreeDrug {
+	referralId: String
+	insuranceKey: String
+	lastOrderDate: AWSDate
+	expectedDeliveryDate: AWSDate
+	firstEnrollDate: AWSDate
+	orderName: String
+}
+
+input FreeDrugInput {
+	referralId: String
+	insuranceKey: String
+	lastOrderDate: AWSDate
+	expectedDeliveryDate: AWSDate
+	firstEnrollDate: AWSDate
+	orderName: String
+}
+
+type Frequency {
+	every: Int
+	everyUnit: DatePeriod
+	duration: Int
+	durationUnit: DatePeriod
+}
+
+input FrequencyInput {
+	every: Int
+	everyUnit: DatePeriod
+	duration: Int
+	durationUnit: DatePeriod
+}
+
+enum Gender {
+	FEMALE
+	MALE
+	OTHER
+}
+
+input GenerateFaxPDFInput {
+	agentId: String!
+	patientId: String!
+	outboundFax: AWSPhone!
+	from: String
+	attention: String!
+	sendToPhone: AWSPhone
+	faxType: FaxTemplate!
+	referralOrderId: String
+	faxNotes: String
+	subject: String!
+	additionalData: AWSJSON
+}
+
+type GetBenefitCheckingResp {
+	benefitChecking: BenefitCheckingByReferral
+	groupsAndAssociations: [GroupResp]
+	insuranceInfo: InsuranceDetail
+}
+
+type GetPriorAuthorizationResp {
+	freeDrug: FreeDrug
+	denialTracking: PriorAuthDenialTracking
+	priorAuthChecking: PriorAuthChecking
+	groupAndAssociates: GroupResp
+	associatedBIChecking: AssociatedBICheckingForPA
+	associatedReferral: DrugReferral
+	isPARequired: Boolean
+	isBICompleted: Boolean
+}
+
+type GroupAIC {
+	id: ID!
+	name: String
+	taxId: ID!
+	state: String!
+	billingAddress: Address
+	phoneNumber: AWSPhone
+	faxNumber: AWSPhone
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type GroupInsurerLocationProviderAIC {
+	id: ID!
+	groupId: ID!
+	locationId: ID!
+	insurerId: ID
+	providerId: ID
+	insurerPlanId: String
+	insurerPIN: String
+	locationNPI: String
+	locationPTAN: String
+	locationEffectiveDate: AWSDate
+	locationEndDate: AWSDate
+	locationStatus: Status
+	providerEffectiveDate: AWSDate
+	providerEndDate: AWSDate
+	providerStatus: Status
+	providerPTAN: String
+	notes: String
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+enum GroupQueue {
+	INTAKE
+	BI_PA
+	SCHEDULE
+	CLINICIAN
+	INVENTORY
+	INBOUND
+	UNASSIGNED
+}
+
+type GroupResp {
+	id: ID!
+	name: String
+	taxId: ID
+	phoneNumber: AWSPhone
+	faxNumber: AWSPhone
+	locations: [LocationResp]
+}
+
+type HCPProfile {
+	agentId: ID!
+	patientId: ID!
+	hcpProfile: [PrescriberInfo]
+}
+
+type IMDrugRecord {
+	recordNumber: Int
+	time: AWSDateTime
+	location: String
+	amount: Float
+	unitOfAmount: String
+	visualNotes: String
+	initials: String
+}
+
+input IMDrugRecordInput {
+	recordNumber: Int
+	time: AWSDateTime
+	location: String
+	amount: Float
+	unitOfAmount: String
+	visualNotes: String
+	initials: String
+}
+
+type IVDrugRecord {
+	recordNumber: Int
+	time: AWSDateTime
+	event: String
+	rate: Float
+	unitOfRate: String
+	visualNotes: String
+	initials: String
+	totalInfusionInSec: Int
+}
+
+input IVDrugRecordInput {
+	recordNumber: Int
+	time: AWSDateTime
+	event: String
+	rate: Float
+	unitOfRate: String
+	visualNotes: String
+	initials: String
+	totalInfusionInSec: Int
+}
+
+type InfusionCenter {
+	address: Address
+	name: String
+}
+
+type InfusionProvider {
+	name: String
+	npiNumber: String
+	taxId: String
+	type: String
+}
+
+input InfusionProviderInput {
+	name: String!
+	npiNumber: String
+	taxId: String!
+	type: String!
+}
+
+type Insurance {
+	isPatientInsured: Boolean
+	primary: InsuranceDetail
+	secondary: InsuranceDetail
+	tertiary: InsuranceDetail
+}
+
+type InsuranceDetail {
+	insurerId: String
+	insurerName: String
+	binNumber: String
+	pcnNumber: String
+	coveredBy: String
+	email: AWSEmail
+	firstName: String
+	groupId: String
+	insuranceExpireDate: AWSDate
+	lastName: String
+	planName: String
+	policyId: String
+	state: String
+	customerServicePhone: AWSPhone
+	relationship: String
+	rxPlanName: String
+	pharmacyPhone: String
+	rxGroupNumber: String
+	hasPharmacyBenefits: Boolean
+	payerId: String
+}
+
+input InsuranceDetailInput {
+	insurerId: String!
+	insurerName: String
+	binNumber: String
+	pcnNumber: String
+	coveredBy: String
+	email: AWSEmail
+	firstName: String
+	groupId: String
+	insuranceExpireDate: AWSDate
+	lastName: String
+	planName: String!
+	policyId: String!
+	state: String!
+	customerServicePhone: AWSPhone
+	relationship: PersonRelationship!
+	rxPlanName: String
+	pharmacyPhone: String
+	rxGroupNumber: String
+	hasPharmacyBenefits: Boolean
+	payerId: String
+}
+
+input InsuranceInput {
+	isPatientInsured: Boolean
+	primary: InsuranceDetailInput
+	secondary: InsuranceDetailInput
+	tertiary: InsuranceDetailInput
+}
+
+type InsurancePolicy {
+	planType: PlanType
+	planName: String
+	dedType: String
+	effectiveDate: AWSDate
+	termDate: AWSDate
+	coPay: Float
+	coveragePercentage: Float
+	deductibleInfo: [AmountDetail]
+	oopMax: [AmountDetail]
+	verificationMethod: ContactMethod
+	networkStatus: NetworkStatus
+	outOfNetworkBenefits: Boolean
+}
+
+input InsurancePolicyInput {
+	planType: PlanType
+	dedType: String
+	effectiveDate: AWSDate
+	termDate: AWSDate
+	coPay: Float
+	coveragePercentage: Float
+	deductibleInfo: [AmountDetailInput]
+	oopMax: [AmountDetailInput]
+	verificationMethod: ContactMethod
+	networkStatus: NetworkStatus
+	outOfNetworkBenefits: Boolean
+}
+
+enum InsuranceType {
+	COMMERCIAL
+	MEDICAID
+	MEDICARE
+}
+
+type InsurerAIC {
+	id: ID!
+	name: String!
+	taxId: String
+	insurerType: String
+	billingAddress: Address
+	mainPhoneNumber: AWSPhone
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+enum InventorySource {
+	BUY_AND_BILL
+	FREE_DRUG
+}
+
+enum InventoryStatus {
+	IN_STOCK
+	DELETED
+}
+
+enum InventoryUpdateReason {
+	SHIPPED
+	INFUSED
+	WASTED
+	RECONCILIATION
+}
+
+type InventoryUpdateRecord {
+	updatedAt: AWSDateTime
+	changeInQuantity: Int
+	updateReason: InventoryUpdateReason
+	updatedBy: String
+	notes: String
+}
+
+input InventoryUpdateRecordInput {
+	updatedAt: AWSDateTime
+	changeInQuantity: Int
+	updateReason: InventoryUpdateReason
+	updatedBy: String
+	notes: String
+}
+
+type InvestigationStatus {
+	HCPContactHistory: [Contact]
+	PatientContactHistory: [Contact]
+	requirePA: Boolean
+	status: Status
+}
+
+input InvestigationStatusInput {
+	HCPContactHistory: [ContactInput]
+	PatientContactHistory: [ContactInput]
+	requirePA: Boolean
+	status: Status
+}
+
+type LabTestResult {
+	date: AWSDate
+	lab: String
+	labExpiration: AWSDateTime
+	labTakenDate: AWSDateTime
+}
+
+input LabTestResultInput {
+	date: AWSDate!
+	lab: String!
+	labExpiration: AWSDateTime!
+	labTakenDate: AWSDateTime!
+}
+
+enum Language {
+	ENGLISH
+	SPANISH
+}
+
+enum LengthUnit {
+	CM
+	MM
+	INCH
+	FOOT
+}
+
+type LineFlushRecord {
+	recordNumber: Int
+	ivAccess: String
+	flushType: String
+	executedBy: String
+	flushTime: AWSDateTime
+}
+
+input LineFlushRecordInput {
+	recordNumber: Int
+	ivAccess: String
+	flushType: String
+	executedBy: String
+	flushTime: AWSDateTime
+}
+
+type LocationAIC {
+	id: ID!
+	locationName: String!
+	address: Address
+	state: String
+	county: String
+	notes: [ClinicalNote]
+	billingAddress: Address
+	chairs: [Chair]
+	timeZone: String
+	officeHours: [OfficeHour]
+	holidays: [AWSDate]
+	specialTimeSlots: [OfficeHour]
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type LocationAndProvider {
+	locationId: String
+	providerId: String
+	groupId: String
+	locationName: String
+	providerFirstName: String
+	providerLastName: String
+}
+
+type LocationResp {
+	id: ID!
+	locationName: String
+	address: Address
+	locationNPI: ID!
+	state: String
+	groupId: ID
+	providers: [ProviderResp]
+}
+
+type LockerResponse {
+	success: Boolean
+	details: String
+	lockerId: String
+}
+
+enum MedicationType {
+	PRIMARY
+	SECONDARY
+}
+
+input ModelActivityConditionInput {
+	caseId: ModelIDInput
+	activityName: ModelStringInput
+	agentId: ModelStringInput
+	patientId: ModelStringInput
+	description: ModelStringInput
+	loggingTime: ModelStringInput
+	attachedData: ModelStringInput
+	and: [ModelActivityConditionInput]
+	or: [ModelActivityConditionInput]
+	not: ModelActivityConditionInput
+}
+
+type ModelActivityConnection {
+	items: [Activity]
+	nextToken: String
+}
+
+input ModelActivityFilterInput {
+	id: ModelIDInput
+	caseId: ModelIDInput
+	activityName: ModelStringInput
+	agentId: ModelStringInput
+	patientId: ModelStringInput
+	description: ModelStringInput
+	loggingTime: ModelStringInput
+	attachedData: ModelStringInput
+	and: [ModelActivityFilterInput]
+	or: [ModelActivityFilterInput]
+	not: ModelActivityFilterInput
+}
+
+enum ModelAttributeTypes {
+	binary
+	binarySet
+	bool
+	list
+	map
+	number
+	numberSet
+	string
+	stringSet
+	_null
+}
+
+input ModelBooleanInput {
+	ne: Boolean
+	eq: Boolean
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+type ModelCaseConnection {
+	items: [Case]
+	nextToken: String
+}
+
+input ModelCaseFilterInput {
+	caseId: ModelIDInput
+	caseStatus: ModelCaseStatusInput
+	currentAssignedAgentId: ModelStringInput
+	description: ModelStringInput
+	patientId: ModelIDInput
+	agentId: ModelIDInput
+	documentURI: ModelStringInput
+	source: ModelStringInput
+	isLocked: ModelBooleanInput
+	lockedAt: ModelStringInput
+	lockedBy: ModelStringInput
+	caseType: ModelCaseTypeInput
+	and: [ModelCaseFilterInput]
+	or: [ModelCaseFilterInput]
+	not: ModelCaseFilterInput
+}
+
+input ModelCaseStatusInput {
+	eq: CaseStatus
+	ne: CaseStatus
+}
+
+input ModelCaseTypeInput {
+	eq: CaseType
+	ne: CaseType
+}
+
+type ModelCommunicationHistoryConnection {
+	items: [CommunicationHistory]
+	nextToken: String
+}
+
+input ModelCommunicationHistoryFilterInput {
+	id: ModelIDInput
+	patientId: ModelStringInput
+	agentId: ModelStringInput
+	caseId: ModelStringInput
+	eventTime: ModelStringInput
+	updateTime: ModelStringInput
+	channel: ModelContactMethodInput
+	fromEntity: ModelStringInput
+	toEntity: ModelStringInput
+	description: ModelStringInput
+	reference: ModelStringInput
+	attachment: ModelStringInput
+	purpose: ModelStringInput
+	direction: ModelDirectionInput
+	status: ModelCommunicationStatusInput
+	faxId: ModelStringInput
+	emailCCList: ModelStringInput
+	subject: ModelStringInput
+	agentEmail: ModelStringInput
+	and: [ModelCommunicationHistoryFilterInput]
+	or: [ModelCommunicationHistoryFilterInput]
+	not: ModelCommunicationHistoryFilterInput
+}
+
+input ModelCommunicationStatusInput {
+	eq: CommunicationStatus
+	ne: CommunicationStatus
+}
+
+input ModelContactMethodInput {
+	eq: ContactMethod
+	ne: ContactMethod
+}
+
+input ModelDirectionInput {
+	eq: Direction
+	ne: Direction
+}
+
+input ModelDosageUnitInput {
+	eq: DosageUnit
+	ne: DosageUnit
+}
+
+input ModelEligibilityStatusInput {
+	eq: EligibilityStatus
+	ne: EligibilityStatus
+}
+
+input ModelEventConditionInput {
+	title: ModelStringInput
+	status: ModelEventStatusInput
+	createdBy: ModelIDInput
+	updatedBy: ModelIDInput
+	startTime: ModelStringInput
+	endTime: ModelStringInput
+	locationId: ModelIDInput
+	chairId: ModelIDInput
+	patientId: ModelIDInput
+	referralId: ModelStringInput
+	providerId: ModelIDInput
+	agentId: ModelIDInput
+	resources: ModelStringInput
+	notes: ModelStringInput
+	startTimeZone: ModelTimeZoneInput
+	endTimeZone: ModelTimeZoneInput
+	reason: ModelStringInput
+	startTimestamp: ModelIntInput
+	endTimestamp: ModelIntInput
+	productOrderStatus: ModelProductOrderStatusInput
+	adminSequenceNumber: ModelIntInput
+	eligibilityStatus: ModelEligibilityStatusInput
+	and: [ModelEventConditionInput]
+	or: [ModelEventConditionInput]
+	not: ModelEventConditionInput
+}
+
+type ModelEventConnection {
+	items: [Event]
+	nextToken: String
+}
+
+input ModelEventFilterInput {
+	id: ModelIDInput
+	title: ModelStringInput
+	status: ModelEventStatusInput
+	createdBy: ModelIDInput
+	updatedBy: ModelIDInput
+	startTime: ModelStringInput
+	endTime: ModelStringInput
+	locationId: ModelIDInput
+	chairId: ModelIDInput
+	patientId: ModelIDInput
+	referralId: ModelStringInput
+	providerId: ModelIDInput
+	agentId: ModelIDInput
+	resources: ModelStringInput
+	notes: ModelStringInput
+	startTimeZone: ModelTimeZoneInput
+	endTimeZone: ModelTimeZoneInput
+	reason: ModelStringInput
+	startTimestamp: ModelIntInput
+	endTimestamp: ModelIntInput
+	productOrderStatus: ModelProductOrderStatusInput
+	adminSequenceNumber: ModelIntInput
+	eligibilityStatus: ModelEligibilityStatusInput
+	and: [ModelEventFilterInput]
+	or: [ModelEventFilterInput]
+	not: ModelEventFilterInput
+}
+
+input ModelEventStatusInput {
+	eq: EventStatus
+	ne: EventStatus
+}
+
+input ModelFloatInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	between: [Float]
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+input ModelGroupAICConditionInput {
+	name: ModelStringInput
+	taxId: ModelIDInput
+	state: ModelStringInput
+	phoneNumber: ModelStringInput
+	faxNumber: ModelStringInput
+	and: [ModelGroupAICConditionInput]
+	or: [ModelGroupAICConditionInput]
+	not: ModelGroupAICConditionInput
+}
+
+type ModelGroupAICConnection {
+	items: [GroupAIC]
+	nextToken: String
+}
+
+input ModelGroupAICFilterInput {
+	id: ModelIDInput
+	name: ModelStringInput
+	taxId: ModelIDInput
+	state: ModelStringInput
+	phoneNumber: ModelStringInput
+	faxNumber: ModelStringInput
+	and: [ModelGroupAICFilterInput]
+	or: [ModelGroupAICFilterInput]
+	not: ModelGroupAICFilterInput
+}
+
+input ModelGroupInsurerLocationProviderAICConditionInput {
+	groupId: ModelIDInput
+	locationId: ModelIDInput
+	insurerId: ModelIDInput
+	providerId: ModelIDInput
+	insurerPlanId: ModelStringInput
+	insurerPIN: ModelStringInput
+	locationNPI: ModelStringInput
+	locationPTAN: ModelStringInput
+	locationEffectiveDate: ModelStringInput
+	locationEndDate: ModelStringInput
+	locationStatus: ModelStatusInput
+	providerEffectiveDate: ModelStringInput
+	providerEndDate: ModelStringInput
+	providerStatus: ModelStatusInput
+	providerPTAN: ModelStringInput
+	notes: ModelStringInput
+	and: [ModelGroupInsurerLocationProviderAICConditionInput]
+	or: [ModelGroupInsurerLocationProviderAICConditionInput]
+	not: ModelGroupInsurerLocationProviderAICConditionInput
+}
+
+type ModelGroupInsurerLocationProviderAICConnection {
+	items: [GroupInsurerLocationProviderAIC]
+	nextToken: String
+}
+
+input ModelGroupInsurerLocationProviderAICFilterInput {
+	id: ModelIDInput
+	groupId: ModelIDInput
+	locationId: ModelIDInput
+	insurerId: ModelIDInput
+	providerId: ModelIDInput
+	insurerPlanId: ModelStringInput
+	insurerPIN: ModelStringInput
+	locationNPI: ModelStringInput
+	locationPTAN: ModelStringInput
+	locationEffectiveDate: ModelStringInput
+	locationEndDate: ModelStringInput
+	locationStatus: ModelStatusInput
+	providerEffectiveDate: ModelStringInput
+	providerEndDate: ModelStringInput
+	providerStatus: ModelStatusInput
+	providerPTAN: ModelStringInput
+	notes: ModelStringInput
+	and: [ModelGroupInsurerLocationProviderAICFilterInput]
+	or: [ModelGroupInsurerLocationProviderAICFilterInput]
+	not: ModelGroupInsurerLocationProviderAICFilterInput
+}
+
+input ModelGroupQueueInput {
+	eq: GroupQueue
+	ne: GroupQueue
+}
+
+input ModelIDInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+	size: ModelSizeInput
+}
+
+input ModelIDKeyConditionInput {
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	between: [ID]
+	beginsWith: ID
+}
+
+input ModelInsurerAICConditionInput {
+	name: ModelStringInput
+	taxId: ModelStringInput
+	insurerType: ModelStringInput
+	mainPhoneNumber: ModelStringInput
+	and: [ModelInsurerAICConditionInput]
+	or: [ModelInsurerAICConditionInput]
+	not: ModelInsurerAICConditionInput
+}
+
+type ModelInsurerAICConnection {
+	items: [InsurerAIC]
+	nextToken: String
+}
+
+input ModelInsurerAICFilterInput {
+	id: ModelIDInput
+	name: ModelStringInput
+	taxId: ModelStringInput
+	insurerType: ModelStringInput
+	mainPhoneNumber: ModelStringInput
+	and: [ModelInsurerAICFilterInput]
+	or: [ModelInsurerAICFilterInput]
+	not: ModelInsurerAICFilterInput
+}
+
+input ModelIntInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+input ModelIntKeyConditionInput {
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+}
+
+input ModelInventoryStatusInput {
+	eq: InventoryStatus
+	ne: InventoryStatus
+}
+
+input ModelLocationAICConditionInput {
+	locationName: ModelStringInput
+	state: ModelStringInput
+	county: ModelStringInput
+	timeZone: ModelStringInput
+	holidays: ModelStringInput
+	and: [ModelLocationAICConditionInput]
+	or: [ModelLocationAICConditionInput]
+	not: ModelLocationAICConditionInput
+}
+
+type ModelLocationAICConnection {
+	items: [LocationAIC]
+	nextToken: String
+}
+
+input ModelLocationAICFilterInput {
+	id: ModelIDInput
+	locationName: ModelStringInput
+	state: ModelStringInput
+	county: ModelStringInput
+	timeZone: ModelStringInput
+	holidays: ModelStringInput
+	and: [ModelLocationAICFilterInput]
+	or: [ModelLocationAICFilterInput]
+	not: ModelLocationAICFilterInput
+}
+
+type ModelNursingProcessConnection {
+	items: [NursingProcess]
+	nextToken: String
+}
+
+input ModelNursingProcessFilterInput {
+	id: ModelIDInput
+	patientId: ModelIDInput
+	referralId: ModelStringInput
+	providerId: ModelIDInput
+	startedBy: ModelIDInput
+	locationId: ModelIDInput
+	chairId: ModelStringInput
+	startTime: ModelStringInput
+	endTime: ModelStringInput
+	status: ModelNursingStatusInput
+	currentStep: ModelNursingStepInput
+	notes: ModelStringInput
+	notesComplete: ModelBooleanInput
+	scheduleEventId: ModelStringInput
+	startTimestamp: ModelIntInput
+	endTimestamp: ModelIntInput
+	patientFirstName: ModelStringInput
+	patientLastName: ModelStringInput
+	orderName: ModelStringInput
+	reasonForCancellation: ModelStringInput
+	notesAboutCancellation: ModelStringInput
+	claimId: ModelStringInput
+	and: [ModelNursingProcessFilterInput]
+	or: [ModelNursingProcessFilterInput]
+	not: ModelNursingProcessFilterInput
+}
+
+input ModelNursingStatusInput {
+	eq: NursingStatus
+	ne: NursingStatus
+}
+
+input ModelNursingStepInput {
+	eq: NursingStep
+	ne: NursingStep
+}
+
+input ModelPatientBucketConditionInput {
+	agentId: ModelIDInput
+	dob: ModelStringInput
+	patientFirstName: ModelStringInput
+	patientMiddleName: ModelStringInput
+	homePhoneNumber: ModelStringInput
+	patientLastName: ModelStringInput
+	aggregateAttribute: ModelStringInput
+	and: [ModelPatientBucketConditionInput]
+	or: [ModelPatientBucketConditionInput]
+	not: ModelPatientBucketConditionInput
+}
+
+type ModelPatientBucketConnection {
+	items: [PatientBucket]
+	nextToken: String
+}
+
+input ModelPatientBucketFilterInput {
+	agentId: ModelIDInput
+	dob: ModelStringInput
+	patientFirstName: ModelStringInput
+	patientMiddleName: ModelStringInput
+	homePhoneNumber: ModelStringInput
+	patientLastName: ModelStringInput
+	patientId: ModelIDInput
+	aggregateAttribute: ModelStringInput
+	and: [ModelPatientBucketFilterInput]
+	or: [ModelPatientBucketFilterInput]
+	not: ModelPatientBucketFilterInput
+}
+
+input ModelPatientToPrescriberConditionInput {
+	and: [ModelPatientToPrescriberConditionInput]
+	or: [ModelPatientToPrescriberConditionInput]
+	not: ModelPatientToPrescriberConditionInput
+}
+
+type ModelPatientToPrescriberConnection {
+	items: [PatientToPrescriber]
+	nextToken: String
+}
+
+input ModelPatientToPrescriberFilterInput {
+	patientId: ModelIDInput
+	prescriberId: ModelIDInput
+	and: [ModelPatientToPrescriberFilterInput]
+	or: [ModelPatientToPrescriberFilterInput]
+	not: ModelPatientToPrescriberFilterInput
+}
+
+input ModelPayerConditionInput {
+	planName: ModelStringInput
+	insurerId: ModelIDInput
+	insurerName: ModelStringInput
+	tradingPatnerId: ModelStringInput
+	providerPhone: ModelStringInput
+	electronicPayerId: ModelStringInput
+	timelyFillingINN: ModelIntInput
+	timelyFillingOON: ModelIntInput
+	externalId: ModelStringInput
+	and: [ModelPayerConditionInput]
+	or: [ModelPayerConditionInput]
+	not: ModelPayerConditionInput
+}
+
+type ModelPayerConnection {
+	items: [Payer]
+	nextToken: String
+}
+
+input ModelPayerFilterInput {
+	id: ModelIDInput
+	planName: ModelStringInput
+	insurerId: ModelIDInput
+	insurerName: ModelStringInput
+	tradingPatnerId: ModelStringInput
+	providerPhone: ModelStringInput
+	electronicPayerId: ModelStringInput
+	timelyFillingINN: ModelIntInput
+	timelyFillingOON: ModelIntInput
+	externalId: ModelStringInput
+	and: [ModelPayerFilterInput]
+	or: [ModelPayerFilterInput]
+	not: ModelPayerFilterInput
+}
+
+input ModelPrescriberInfoConditionInput {
+	medicalSpecialty: ModelStringInput
+	officeContactFirstName: ModelStringInput
+	officeContactLastName: ModelStringInput
+	siteInstitutionName: ModelStringInput
+	taxIDNumber: ModelStringInput
+	officeEmail: ModelStringInput
+	officePhoneNumber: ModelStringInput
+	officeFaxNumber: ModelStringInput
+	preferredPrescriberContactMethod: ModelContactMethodInput
+	prescriberFirstName: ModelStringInput
+	prescriberMiddleName: ModelStringInput
+	prescriberLastName: ModelStringInput
+	HINNumber: ModelStringInput
+	officeContactName: ModelStringInput
+	and: [ModelPrescriberInfoConditionInput]
+	or: [ModelPrescriberInfoConditionInput]
+	not: ModelPrescriberInfoConditionInput
+}
+
+type ModelPrescriberInfoConnection {
+	items: [PrescriberInfo]
+	nextToken: String
+}
+
+input ModelPrescriberInfoFilterInput {
+	medicalSpecialty: ModelStringInput
+	officeContactFirstName: ModelStringInput
+	officeContactLastName: ModelStringInput
+	siteInstitutionName: ModelStringInput
+	taxIDNumber: ModelStringInput
+	officeEmail: ModelStringInput
+	officePhoneNumber: ModelStringInput
+	officeFaxNumber: ModelStringInput
+	preferredPrescriberContactMethod: ModelContactMethodInput
+	prescriberFirstName: ModelStringInput
+	prescriberMiddleName: ModelStringInput
+	prescriberLastName: ModelStringInput
+	NPINumber: ModelIDInput
+	HINNumber: ModelStringInput
+	officeContactName: ModelStringInput
+	and: [ModelPrescriberInfoFilterInput]
+	or: [ModelPrescriberInfoFilterInput]
+	not: ModelPrescriberInfoFilterInput
+}
+
+input ModelProductConditionInput {
+	productName: ModelStringInput
+	vendor: ModelStringInput
+	price: ModelFloatInput
+	status: ModelStringInput
+	strength: ModelStringInput
+	dosing: ModelStringInput
+	route: ModelRouteTypeInput
+	unitOfMeas: ModelDosageUnitInput
+	frequency: ModelStringInput
+	scheduledAllotment: ModelStringInput
+	typeOfProduct: ModelProductTypeInput
+	and: [ModelProductConditionInput]
+	or: [ModelProductConditionInput]
+	not: ModelProductConditionInput
+}
+
+type ModelProductConnection {
+	items: [Product]
+	nextToken: String
+}
+
+input ModelProductFilterInput {
+	productId: ModelIDInput
+	productName: ModelStringInput
+	vendor: ModelStringInput
+	price: ModelFloatInput
+	status: ModelStringInput
+	strength: ModelStringInput
+	dosing: ModelStringInput
+	route: ModelRouteTypeInput
+	unitOfMeas: ModelDosageUnitInput
+	frequency: ModelStringInput
+	scheduledAllotment: ModelStringInput
+	typeOfProduct: ModelProductTypeInput
+	and: [ModelProductFilterInput]
+	or: [ModelProductFilterInput]
+	not: ModelProductFilterInput
+}
+
+type ModelProductInventoryConnection {
+	items: [ProductInventory]
+	nextToken: String
+}
+
+input ModelProductInventoryFilterInput {
+	id: ModelIDInput
+	locationId: ModelIDInput
+	lotNumber: ModelStringInput
+	productId: ModelIDInput
+	productName: ModelStringInput
+	price: ModelFloatInput
+	currentQuantity: ModelIntInput
+	initialQuantity: ModelIntInput
+	expirationDate: ModelStringInput
+	receivedBy: ModelStringInput
+	updatedBy: ModelStringInput
+	strengthPerVial: ModelFloatInput
+	unitOfMeasure: ModelStringInput
+	vendor: ModelStringInput
+	status: ModelInventoryStatusInput
+	freeDrug: ModelBooleanInput
+	expirationTimeStamp: ModelIntInput
+	receivedTimestamp: ModelIntInput
+	and: [ModelProductInventoryFilterInput]
+	or: [ModelProductInventoryFilterInput]
+	not: ModelProductInventoryFilterInput
+}
+
+type ModelProductOrderConnection {
+	items: [ProductOrder]
+	nextToken: String
+}
+
+input ModelProductOrderFilterInput {
+	id: ModelIDInput
+	locationId: ModelIDInput
+	productName: ModelStringInput
+	dose: ModelIntInput
+	unitOfMeasure: ModelStringInput
+	productId: ModelIDInput
+	orderQuantity: ModelIntInput
+	orderDate: ModelStringInput
+	orderedBy: ModelStringInput
+	initialQuantity: ModelIntInput
+	orderTimestamp: ModelIntInput
+	orderStatus: ModelProductOrderStatusInput
+	updatedAt: ModelStringInput
+	updatedBy: ModelStringInput
+	and: [ModelProductOrderFilterInput]
+	or: [ModelProductOrderFilterInput]
+	not: ModelProductOrderFilterInput
+}
+
+input ModelProductOrderStatusInput {
+	eq: ProductOrderStatus
+	ne: ProductOrderStatus
+}
+
+type ModelProductShippingConnection {
+	items: [ProductShipping]
+	nextToken: String
+}
+
+input ModelProductShippingFilterInput {
+	id: ModelIDInput
+	shippedDate: ModelStringInput
+	trackingNumber: ModelStringInput
+	shippedBy: ModelStringInput
+	shippingCompany: ModelStringInput
+	shippingToLocationId: ModelStringInput
+	shippingStatus: ModelShippingStatusInput
+	productOrderIds: ModelStringInput
+	and: [ModelProductShippingFilterInput]
+	or: [ModelProductShippingFilterInput]
+	not: ModelProductShippingFilterInput
+}
+
+input ModelProductTypeInput {
+	eq: ProductType
+	ne: ProductType
+}
+
+input ModelProfessionalTypeInput {
+	eq: ProfessionalType
+	ne: ProfessionalType
+}
+
+input ModelProviderAICConditionInput {
+	firstName: ModelStringInput
+	lastName: ModelStringInput
+	middleName: ModelStringInput
+	suffix: ModelSuffixInput
+	cignaId: ModelStringInput
+	unitedId: ModelStringInput
+	aetnaId: ModelStringInput
+	sex: ModelSexInput
+	type: ModelProfessionalTypeInput
+	and: [ModelProviderAICConditionInput]
+	or: [ModelProviderAICConditionInput]
+	not: ModelProviderAICConditionInput
+}
+
+type ModelProviderAICConnection {
+	items: [ProviderAIC]
+	nextToken: String
+}
+
+input ModelProviderAICFilterInput {
+	providerNPI: ModelIDInput
+	firstName: ModelStringInput
+	lastName: ModelStringInput
+	middleName: ModelStringInput
+	suffix: ModelSuffixInput
+	cignaId: ModelStringInput
+	unitedId: ModelStringInput
+	aetnaId: ModelStringInput
+	sex: ModelSexInput
+	type: ModelProfessionalTypeInput
+	and: [ModelProviderAICFilterInput]
+	or: [ModelProviderAICFilterInput]
+	not: ModelProviderAICFilterInput
+}
+
+input ModelRoleInput {
+	eq: Role
+	ne: Role
+}
+
+input ModelRouteTypeInput {
+	eq: RouteType
+	ne: RouteType
+}
+
+input ModelSexInput {
+	eq: Sex
+	ne: Sex
+}
+
+input ModelShippingStatusInput {
+	eq: ShippingStatus
+	ne: ShippingStatus
+}
+
+input ModelSizeInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+}
+
+enum ModelSortDirection {
+	ASC
+	DESC
+}
+
+input ModelStatusInput {
+	eq: Status
+	ne: Status
+}
+
+input ModelStringInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+	size: ModelSizeInput
+}
+
+input ModelStringKeyConditionInput {
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	between: [String]
+	beginsWith: String
+}
+
+input ModelSuffixInput {
+	eq: Suffix
+	ne: Suffix
+}
+
+input ModelTaskInput {
+	eq: Task
+	ne: Task
+}
+
+input ModelTaskStatusInput {
+	eq: TaskStatus
+	ne: TaskStatus
+}
+
+input ModelTimeZoneInput {
+	eq: TimeZone
+	ne: TimeZone
+}
+
+type ModelUserConnection {
+	items: [User]
+	nextToken: String
+}
+
+input ModelUserFilterInput {
+	userId: ModelIDInput
+	role: ModelRoleInput
+	lastName: ModelStringInput
+	firstName: ModelStringInput
+	aclRule: ModelStringInput
+	queueDepth: ModelIntInput
+	defaultRole: ModelBooleanInput
+	and: [ModelUserFilterInput]
+	or: [ModelUserFilterInput]
+	not: ModelUserFilterInput
+}
+
+input ModelWorkItemConditionInput {
+	caseId: ModelIDInput
+	work: ModelTaskInput
+	workStatus: ModelTaskStatusInput
+	createdBy: ModelStringInput
+	assignedTo: ModelStringInput
+	patientId: ModelStringInput
+	description: ModelStringInput
+	referralId: ModelStringInput
+	endTime: ModelStringInput
+	startTime: ModelStringInput
+	targetTime: ModelStringInput
+	processId: ModelStringInput
+	currentStep: ModelStringInput
+	followupDate: ModelStringInput
+	attachedData: ModelStringInput
+	priority: ModelIntInput
+	groupQueueId: ModelGroupQueueInput
+	and: [ModelWorkItemConditionInput]
+	or: [ModelWorkItemConditionInput]
+	not: ModelWorkItemConditionInput
+}
+
+type ModelWorkItemConnection {
+	items: [WorkItem]
+	nextToken: String
+}
+
+input ModelWorkItemFilterInput {
+	id: ModelIDInput
+	caseId: ModelIDInput
+	work: ModelTaskInput
+	workStatus: ModelTaskStatusInput
+	createdBy: ModelStringInput
+	assignedTo: ModelStringInput
+	patientId: ModelStringInput
+	description: ModelStringInput
+	referralId: ModelStringInput
+	endTime: ModelStringInput
+	startTime: ModelStringInput
+	targetTime: ModelStringInput
+	processId: ModelStringInput
+	currentStep: ModelStringInput
+	followupDate: ModelStringInput
+	attachedData: ModelStringInput
+	priority: ModelIntInput
+	groupQueueId: ModelGroupQueueInput
+	and: [ModelWorkItemFilterInput]
+	or: [ModelWorkItemFilterInput]
+	not: ModelWorkItemFilterInput
+}
+
+type Mutation {
+	addUpdateAdverseEventInfo(input: AddUpdateAdverseEventInfo!): PatientBucket
+	addUpdateCareGiverInfo(input: AddUpdateCareGiverInfo!): PatientBucket
+	addUpdateClinicalAllergies(input: AddUpdateClinicalAllergies!): PatientBucket
+	addUpdateClinicalDrugHistory(input: AddUpdateClinicalDrugHistory!): PatientBucket
+	addUpdateClinicalInfo(input: AddUpdateClinicalInfo!): PatientBucket
+	addUpdateConsentInfo(input: AddUpdateConsentInfo!): PatientBucket
+	addUpdateDiscontinuationInfo(input: AddUpdateDiscontinuationInfo!): PatientBucket
+	addUpdateFaxInfo(input: AddUpdateFaxInfo!): PatientBucket
+	addUpdateInsuranceInfo(input: AddUpdateInsuranceInfo!): PatientBucket
+	addUpdateInvestigationStatus(input: AddUpdateInvestigationStatusInput!): PatientBucket
+	addUpdatePatientInfo(input: AddUpdatePatientInfo!): PatientBucket
+	addUpdatePriorAuthDenialTracking(input: AddUpdatePriorAuthDenialTracking!): PriorAuthDenialTracking
+	addUpdatePriorAuthFreeDrug(input: AddUpdatePriorAuthFreeDrug!): FreeDrug
+	addUpdatePriorAuthChecking(input: AddUpdatePriorAuthChecking!): PriorAuthChecking
+	updateReferral(input: UpdateReferral!): Referral
+	createNewPatientBucket(input: CreatePatientBucketInput!): PatientBucket
+	addUpdatePatientDocs(input: AddUpdatePatientDocs!): PatientBucket
+	addUpdateNotes(input: AddUpdateNotes!): PatientBucket
+	reassignWork(input: ReassignWorkInput!): WorkResponse
+	acquireWork(input: RequestWorkInput!): WorkResponse
+	releaseWork(input: ReleaseWorkInput!): WorkResponse
+	addUpdateBenefitChecking(input: AddUpdateBenefitInvestigation!): BenefitCheckingByReferral
+	addUpdateHCPProfile(input: AddUpdateHCPProfile!): HCPProfile
+	createReferralOrder(input: CreateReferralOrderInput!): [DrugReferral]
+	attachPrescribersToPatient(input: PrescribersToPatientRequest!): PrescribersToPatientResponse
+	detachPrescribersFromPatient(input: PrescribersToPatientRequest!): PrescribersToPatientResponse
+	sendFax(input: FaxInput!): StatusResp
+	generateFaxPDF(input: GenerateFaxPDFInput!): FaxPDFResp
+	createScheduleEvent(input: CreateScheduleEventInput): ScheduleEventResp
+	updateScheduleEvent(input: UpdateScheduleEventInput): ScheduleEventResp
+	cancelScheduleEvent(input: CancelScheduleEventInput!): ScheduleEventResp
+	stepCheckIn(input: StepCheckInInput): NursingStepResp
+	updateStepOrderReview(input: UpdateStepOrderReviewInput): NursingStepResp
+	updateStepAssessment(input: UpdateStepAssessmentInput): NursingStepResp
+	updateStepPreTreatment(input: UpdateStepPreTreatmentInput): NursingStepResp
+	updateStepPreparation(input: UpdateStepPreparationInput): NursingStepResp
+	updateStepAdministration(input: UpdateStepAdministrationInput): NursingStepResp
+	updateStepCloseTreatment(input: UpdateStepCloseTreatmentInput): NursingStepResp
+	acquireLocker(input: AcquireLocker!): LockerResponse
+	releaseLocker(lockerId: String!, agentId: String!): LockerResponse
+	cancelTreatment(input: CancelTreatmentInput!): NursingStepResp
+	requestForOrder(agentId: String!, orderRequests: [OrderRequestInput!]!): RequestForOrderResp
+	saveOrders(agentId: String!, productOrders: [ProductOrderInput!]!): StatusResp
+	addProductsToInventory(agentId: String!, locationId: String, products: [ReceivedProductInput!]!): StatusResp
+	shippingProducts(agentId: String!, locationId: String, productShipment: ShippingProductInput!): StatusResp
+	updateInventory(agentId: String!, inventoryUpdates: [ProductInventoryUpdateInput]): StatusResp
+	createPatientBucket(input: CreatePatientBucketInput!, condition: ModelPatientBucketConditionInput): PatientBucket
+	updatePatientBucket(input: UpdatePatientBucketInput!, condition: ModelPatientBucketConditionInput): PatientBucket
+	deletePatientBucket(input: DeletePatientBucketInput!, condition: ModelPatientBucketConditionInput): PatientBucket
+	createActivity(input: CreateActivityInput!, condition: ModelActivityConditionInput): Activity
+	updateActivity(input: UpdateActivityInput!, condition: ModelActivityConditionInput): Activity
+	deleteActivity(input: DeleteActivityInput!, condition: ModelActivityConditionInput): Activity
+	createWorkItem(input: CreateWorkItemInput!, condition: ModelWorkItemConditionInput): WorkItem
+	updateWorkItem(input: UpdateWorkItemInput!, condition: ModelWorkItemConditionInput): WorkItem
+	deleteWorkItem(input: DeleteWorkItemInput!, condition: ModelWorkItemConditionInput): WorkItem
+	createProviderAIC(input: CreateProviderAICInput!, condition: ModelProviderAICConditionInput): ProviderAIC
+	updateProviderAIC(input: UpdateProviderAICInput!, condition: ModelProviderAICConditionInput): ProviderAIC
+	deleteProviderAIC(input: DeleteProviderAICInput!, condition: ModelProviderAICConditionInput): ProviderAIC
+	createGroupInsurerLocationProviderAIC(input: CreateGroupInsurerLocationProviderAICInput!, condition: ModelGroupInsurerLocationProviderAICConditionInput): GroupInsurerLocationProviderAIC
+	updateGroupInsurerLocationProviderAIC(input: UpdateGroupInsurerLocationProviderAICInput!, condition: ModelGroupInsurerLocationProviderAICConditionInput): GroupInsurerLocationProviderAIC
+	deleteGroupInsurerLocationProviderAIC(input: DeleteGroupInsurerLocationProviderAICInput!, condition: ModelGroupInsurerLocationProviderAICConditionInput): GroupInsurerLocationProviderAIC
+	createGroupAIC(input: CreateGroupAICInput!, condition: ModelGroupAICConditionInput): GroupAIC
+	updateGroupAIC(input: UpdateGroupAICInput!, condition: ModelGroupAICConditionInput): GroupAIC
+	deleteGroupAIC(input: DeleteGroupAICInput!, condition: ModelGroupAICConditionInput): GroupAIC
+	createLocationAIC(input: CreateLocationAICInput!, condition: ModelLocationAICConditionInput): LocationAIC
+	updateLocationAIC(input: UpdateLocationAICInput!, condition: ModelLocationAICConditionInput): LocationAIC
+	deleteLocationAIC(input: DeleteLocationAICInput!, condition: ModelLocationAICConditionInput): LocationAIC
+	createPrescriberInfo(input: CreatePrescriberInfoInput!, condition: ModelPrescriberInfoConditionInput): PrescriberInfo
+	updatePrescriberInfo(input: UpdatePrescriberInfoInput!, condition: ModelPrescriberInfoConditionInput): PrescriberInfo
+	deletePrescriberInfo(input: DeletePrescriberInfoInput!, condition: ModelPrescriberInfoConditionInput): PrescriberInfo
+	createPatientToPrescriber(input: CreatePatientToPrescriberInput!, condition: ModelPatientToPrescriberConditionInput): PatientToPrescriber
+	updatePatientToPrescriber(input: UpdatePatientToPrescriberInput!, condition: ModelPatientToPrescriberConditionInput): PatientToPrescriber
+	deletePatientToPrescriber(input: DeletePatientToPrescriberInput!, condition: ModelPatientToPrescriberConditionInput): PatientToPrescriber
+	createProduct(input: CreateProductInput!, condition: ModelProductConditionInput): Product
+	updateProduct(input: UpdateProductInput!, condition: ModelProductConditionInput): Product
+	deleteProduct(input: DeleteProductInput!, condition: ModelProductConditionInput): Product
+	createInsurerAIC(input: CreateInsurerAICInput!, condition: ModelInsurerAICConditionInput): InsurerAIC
+	updateInsurerAIC(input: UpdateInsurerAICInput!, condition: ModelInsurerAICConditionInput): InsurerAIC
+	deleteInsurerAIC(input: DeleteInsurerAICInput!, condition: ModelInsurerAICConditionInput): InsurerAIC
+	createPayer(input: CreatePayerInput!, condition: ModelPayerConditionInput): Payer
+	updatePayer(input: UpdatePayerInput!, condition: ModelPayerConditionInput): Payer
+	deletePayer(input: DeletePayerInput!, condition: ModelPayerConditionInput): Payer
+	createEvent(input: CreateEventInput!, condition: ModelEventConditionInput): Event
+	updateEvent(input: UpdateEventInput!, condition: ModelEventConditionInput): Event
+	deleteEvent(input: DeleteEventInput!, condition: ModelEventConditionInput): Event
+}
+
+enum NetworkStatus {
+	IN
+	OUT
+}
+
+type Note {
+	date: AWSDateTime
+	type: String
+	note: String
+	drugName: String
+	labTest: String
+	labExpiration: AWSDate
+}
+
+input NoteInput {
+	date: AWSDateTime
+	note: String!
+	type: NoteType
+	drugName: String
+	labTest: String
+	labExpiration: AWSDate
+}
+
+enum NoteType {
+	ALLERGIES
+	APPOINTMENT
+	BENEFIT_INVESTIGATION
+	CLOSE_TREATMENT
+	FOLLOW_UP
+	INTAKE
+	LAB_TESTS
+	NURSING
+	PRIOR_AUTHORIZATION
+	PAYER
+	PRESCRIBER
+	REFERRAL
+	RESCHEDULE
+	SCHEDULE
+}
+
+type NursingProcess {
+	id: ID!
+	patientId: ID!
+	referralId: String!
+	providerId: ID!
+	startedBy: ID!
+	locationId: ID!
+	chairId: String!
+	startTime: AWSDateTime!
+	endTime: AWSDateTime
+	status: NursingStatus
+	currentStep: NursingStep
+	stepCheckIn: StepCheckIn
+	stepReview: StepReview
+	stepAssessment: StepAssessment
+	stepPreTreatment: StepPreTreatment
+	stepPreparation: StepPreparation
+	stepAdministration: StepAdministration
+	stepCloseTreatment: StepCloseTreatment
+	notes: [String]
+	notesComplete: Boolean
+	scheduleEventId: String!
+	startTimestamp: Int!
+	endTimestamp: Int
+	patientFirstName: String
+	patientLastName: String
+	orderName: String
+	reasonForCancellation: String
+	notesAboutCancellation: String
+	claimId: String
+	claim: ClaimDetail
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+enum NursingStatus {
+	BLOCKED
+	CLOSED
+	CANCELLED
+	IN_PROGRESS
+}
+
+enum NursingStep {
+	CHECK_IN
+	REVIEW_ORDER
+	ASSESSMENT
+	PRE_TREATMENT
+	PREPARATION
+	ADMINISTRATION
+	CLOSE_TREATMENT
+}
+
+type NursingStepResp {
+	statusCode: String!
+	message: String
+	nursingProcessId: String
+	nextStep: NursingStep
+	initStepOrderReview: StepOrderReviewInitData
+	initStepAssessment: StepAssessmentInitData
+	initStepPreTreatment: StepPreTreatmentInitData
+	initStepPreparation: StepPreparationInitData
+}
+
+enum NursingStepStatus {
+	IN_PROGRESS
+	COMPLETED
+}
+
+type OfficeHour {
+	open: AWSDateTime
+	close: AWSDateTime
+	weekDay: WeekDay
+}
+
+input OfficeHourInput {
+	open: AWSDateTime
+	close: AWSDateTime
+	weekDay: WeekDay
+}
+
+type Order {
+	orderType: OrderType
+	orderingProvider: String
+	orderDate: AWSDate
+	orderExpires: AWSDate
+	primaryDX: PrimaryDX
+	medicationType: MedicationType
+	administrations: [OrderAdministration]
+	preMedications: [PreMedication]
+	notes: String
+	orderName: String
+}
+
+type OrderAdministration {
+	adminSequenceNumber: Int
+	drugName: String
+	maxOfTreatments: Int
+	route: RouteType
+	unitOfMeas: DosageUnit
+	approvedDosage: String
+	otherDosage: String
+	calcDosage: String
+	administer: String
+	dosageFrequencyType: String
+	dosageDayRange: Int
+	dosageEvery: Int
+	dosageDateTimeFrameEvery: String
+	dosageFor: Int
+	dosageDateTimeFrameFor: String
+	dose: Float
+}
+
+input OrderAdministrationInput {
+	adminSequenceNumber: Int
+	drugName: String
+	maxOfTreatments: Int!
+	route: RouteType
+	unitOfMeas: DosageUnit
+	approvedDosage: String
+	otherDosage: String
+	calcDosage: String
+	administer: String
+	dosageFrequencyType: String
+	dosageDayRange: Int
+	dosageEvery: Int
+	dosageDateTimeFrameEvery: String
+	dosageFor: Int
+	dosageDateTimeFrameFor: String
+	calcDosageUOM: String
+	dose: Float
+}
+
+type OrderHistoryRecord {
+	archivedDate: AWSDateTime
+	orderName: String
+	agentId: String
+	archivedReferral: DrugReferral
+}
+
+input OrderHistoryRecordInput {
+	archivedDate: AWSDateTime
+	orderName: String
+	agentId: String
+	archivedReferral: DrugReferralInput
+}
+
+input OrderInput {
+	orderType: OrderType!
+	orderingProvider: String
+	orderDate: AWSDate!
+	orderExpires: AWSDate
+	primaryDX: PrimaryDXInput
+	medicationType: MedicationType
+	administrations: [OrderAdministrationInput]
+	preMedications: [PreMedicationInput]
+	notes: String
+	orderName: String
+}
+
+type OrderNotes {
+	allergies: [Note]
+	labTests: [Note]
+}
+
+input OrderNotesInput {
+	allergies: [NoteInput]
+	labTests: [NoteInput]
+}
+
+input OrderRequestInput {
+	eventId: ID!
+	locationId: String
+	locationName: String
+	patientId: String!
+	patientLastName: String
+	patientFirstName: String
+	referralId: String!
+	orderName: String
+	calcDose: String
+	unitOfMeasure: String
+	freeDrug: Boolean
+}
+
+enum OrderType {
+	EXISTING_ORDER
+	NEW_ORDER
+	TRANSFER_ORDER
+}
+
+type PARequestRecord {
+	billings: [BillingInfo]
+	insuranceCompanyName: String
+	personSpokeWith: String
+	callReference: String
+	jCodes: [ProcedureCode]
+	adminCodes: [ProcedureCode]
+	submittedDate: AWSDate
+	followUpDate: AWSDate
+}
+
+input PARequestRecordInput {
+	billings: [BillingInfoInput]!
+	insuranceCompanyName: String
+	personSpokeWith: String
+	callReference: String
+	jCodes: [ProcedureCodeInput]
+	adminCodes: [ProcedureCodeInput]
+	submittedDate: AWSDate
+	followUpDate: AWSDate
+}
+
+type PICCRecord {
+	recordNumber: Int
+	portLocal: String
+	lumens: Int
+	datePlaced: AWSDate
+	armCircle: Int
+	unitOfArmCircle: LengthUnit
+	externalLength: Int
+	unitOfExternalLength: LengthUnit
+	bloodReturned: Boolean
+	flushed: Boolean
+	dressingChangedDate: AWSDate
+	initials: String
+	time: AWSDateTime
+}
+
+input PICCRecordInput {
+	recordNumber: Int
+	portLocal: String
+	lumens: Int
+	datePlaced: AWSDate
+	armCircle: Int
+	unitOfArmCircle: LengthUnit
+	externalLength: Int
+	unitOfExternalLength: LengthUnit
+	bloodReturned: Boolean
+	flushed: Boolean
+	dressingChangedDate: AWSDate
+	initials: String
+	time: AWSDateTime
+}
+
+type PIVRecord {
+	recordNumber: Int
+	status: String
+	attempt: Int
+	time: AWSDateTime
+	catheter: Int
+	location: String
+	entered: Boolean
+	ivDiscontinuedTime: AWSDateTime
+	vein: String
+	initials: String
+	ivInsertion: AWSDateTime
+}
+
+input PIVRecordInput {
+	recordNumber: Int
+	status: String
+	attempt: Int
+	time: AWSDateTime
+	catheter: Int
+	location: String
+	entered: Boolean
+	ivDiscontinuedTime: AWSDateTime
+	vein: String
+	initials: String
+	ivInsertion: AWSDateTime
+}
+
+type PatientAssistantProgram {
+	annualIncome: Float
+	copyAssistance: [TreatmentCost]
+	eligibleForCoPay: Boolean
+	freeDrugs: [TreatmentCost]
+	householdSize: Int
+	incomeDoc: String
+}
+
+input PatientAssistantProgramInput {
+	annualIncome: Float
+	copyAssistance: [TreatmentCostInput]
+	eligibleForCoPay: Boolean
+	freeDrugs: [TreatmentCostInput]
+	householdSize: Int
+	incomeDoc: String
+}
+
+type PatientBucket {
+	agentId: ID!
+	benefitInvestigation: BenefitInvestigation
+	dob: AWSDate!
+	patientFirstName: String
+	patientMiddleName: String
+	homePhoneNumber: String!
+	patientLastName: String!
+	patientAssistantProgram: PatientAssistantProgram
+	patientId: ID!
+	patientProfile: PatientProfile
+	priorAuthorization: PriorAuthorization
+	referral: Referral
+	patientDocuments: [PatientDocument]
+	notes: [Note]
+	aggregateAttribute: String
+	hcpProfile(
+		prescriberId: ModelIDKeyConditionInput,
+		filter: ModelPatientToPrescriberFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelPatientToPrescriberConnection
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type PatientBucketConnection {
+	items: [PatientBucket]
+	nextToken: String
+}
+
+type PatientDocument {
+	documentType: String
+	documentPath: String
+	date: AWSDateTime
+}
+
+input PatientDocumentInput {
+	documentType: String
+	documentPath: String
+	date: AWSDateTime
+}
+
+type PatientInfo {
+	preferredContactMethod: [ContactMethod]
+	address: Address
+	email: AWSEmail
+	gender: Gender
+	cellphoneNumber: AWSPhone
+	preferredLanguage: Language
+	bestContact: ContactType
+	alternateContact: ContactDetail
+	toContactPatient: Boolean
+	toLeaveMessage: Boolean
+	bestTimeToContact: [ContactTime]
+	ssn: String
+	hipaaContact: Boolean
+	patientWeightLB: Float
+	workPhone: AWSPhone
+}
+
+input PatientInfoInput {
+	preferredContactMethod: [ContactMethod]
+	address: AddressInput
+	email: AWSEmail
+	gender: Gender
+	cellphoneNumber: AWSPhone
+	preferredLanguage: Language
+	bestContact: ContactType
+	alternateContact: ContactDetailInput
+	toContactPatient: Boolean
+	toLeaveMessage: Boolean
+	bestTimeToContact: [ContactTime]
+	ssn: String
+	hipaaContact: Boolean
+	workPhone: AWSPhone
+	patientWeightLB: Float
+}
+
+type PatientProfile {
+	consentInfo: ConsentInfo
+	insuranceInfo: Insurance
+	patientInfo: PatientInfo
+}
+
+input PatientProfileInput {
+	consentInfo: ConsentInfoInput
+	insuranceInfo: InsuranceInput
+	patientInfo: PatientInfoInput
+}
+
+type PatientProfileMutationResponse {
+	message: String
+	success: Boolean
+}
+
+type PatientToPrescriber {
+	patientId: ID!
+	prescriberId: ID!
+	prescriber: PrescriberInfo
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type PatientWeightRecord {
+	recordNumber: Int
+	weightLB: Float
+	changeFromLastKnown: Float
+	lastKnown: Float
+	entered: AWSDate
+}
+
+input PatientWeightRecordInput {
+	recordNumber: Int
+	weightLB: Float
+	changeFromLastKnown: Float
+	lastKnown: Float
+	entered: AWSDate
+}
+
+type Payer {
+	id: ID!
+	planName: String!
+	insurerId: ID!
+	insurerName: String!
+	tradingPatnerId: String
+	providerPhone: AWSPhone
+	claimAddress: Address
+	electronicPayerId: String
+	timelyFillingINN: Int
+	timelyFillingOON: Int
+	externalId: String
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type PaymentRecord {
+	dateOfService: AWSDateTime
+	primaryBilledDate: AWSDateTime
+	primaryClaimId: String
+	secondaryClaimId: String
+	allowedAmount: Float
+	insurancePaidAmount: Float
+}
+
+type Person {
+	address: String
+	fax: AWSPhone
+	name: String
+	phone: AWSPhone
+}
+
+enum PersonRelationship {
+	SELF
+	SPOUSE
+	CHILD
+	OTHER
+}
+
+type Pharmacy {
+	name: String
+	phone: AWSPhone
+	signature: String
+	signedDate: String
+}
+
+type PharmacyBenefit {
+	rxPlanName: String
+	pharmacyPhone: String
+	rxGroupNumber: String
+	binNumber: String
+	pcnNumber: String
+}
+
+input PharmacyInput {
+	name: String
+	phone: AWSPhone
+	signature: String
+	signedDate: String
+}
+
+enum PlanType {
+	MEDICAL
+	PHARMACY
+}
+
+type PortRecord {
+	recordNumber: Int
+	portLocal: String
+	needleLength: Int
+	unitOfNeedleLength: LengthUnit
+	needleSize: String
+	accessDate: AWSDate
+	bloodReturned: Boolean
+	flushed: Boolean
+	deaccessedPort: AWSDateTime
+	details: String
+	recordTime: AWSDateTime
+	initials: String
+}
+
+input PortRecordInput {
+	recordNumber: Int
+	portLocal: String
+	needleLength: Int
+	unitOfNeedleLength: LengthUnit
+	needleSize: String
+	accessDate: AWSDate
+	bloodReturned: Boolean
+	flushed: Boolean
+	deaccessedPort: AWSDateTime
+	details: String
+	recordTime: AWSDateTime
+	initials: String
+}
+
+type PreMedication {
+	drugName: String
+	maxOfTreatments: Int
+	route: RouteType
+	unitOfMeas: DosageUnit
+	approvedDosage: String
+	administer: String
+	isPreMed: Boolean
+}
+
+input PreMedicationInput {
+	drugName: String
+	maxOfTreatments: Int
+	route: RouteType
+	unitOfMeas: DosageUnit
+	approvedDosage: String
+	administer: String
+	isPreMed: Boolean
+}
+
+type PreMedicationRecord {
+	recordNumber: Int
+	time: AWSDateTime
+	medication: String
+	dosing: String
+	administeredLocation: String
+	dosage: Float
+	unitOfDosage: DosageUnit
+	lot: String
+	expiration: AWSDate
+}
+
+input PreMedicationRecordInput {
+	recordNumber: Int
+	time: AWSDateTime
+	medication: String
+	dosing: String
+	administeredLocation: String
+	dosage: Float
+	unitOfDosage: DosageUnit
+	lot: String
+	expiration: AWSDate
+}
+
+type PreparationDetail {
+	submitMethod: ContactMethod
+	paPhone: String
+	paSite: String
+	jCode: [String]
+	adminCode1: String
+	adminCode2: String
+	adminCode3: String
+}
+
+input PreparationDetailInput {
+	submitMethod: ContactMethod
+	paPhone: String
+	paSite: String
+	jCode: [String]
+	adminCode1: String
+	adminCode2: String
+	adminCode3: String
+}
+
+type PrescriberInfo {
+	medicalSpecialty: String
+	officeContactFirstName: String
+	officeContactLastName: String
+	siteInstitutionName: String
+	taxIDNumber: String
+	officeEmail: AWSEmail
+	officeAddresses: Address
+	officePhoneNumber: AWSPhone
+	officeFaxNumber: AWSPhone
+	preferredPrescriberContactMethod: ContactMethod
+	prescriberFirstName: String
+	prescriberMiddleName: String
+	prescriberLastName: String
+	NPINumber: ID!
+	additionalOfficeAddresses: [Address]
+	HINNumber: String
+	officeContactName: String
+	notes: [Note]
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+input PrescriberInfoInput {
+	medicalSpecialty: String
+	officeContactFirstName: String
+	officeContactLastName: String
+	siteInstitutionName: String
+	taxIDNumber: String
+	officeEmail: AWSEmail
+	officeAddresses: AddressInput
+	officePhoneNumber: String
+	officeFaxNumber: String
+	preferredPrescriberContactMethod: ContactMethod
+	prescriberFirstName: String
+	prescriberLastName: String
+	NPINumber: String!
+	additionalOfficeAddresses: [AddressInput]
+	HINNumber: String
+	officeContactName: String
+	notes: [NoteInput]
+}
+
+input PrescribersToPatientRequest {
+	patientId: ID!
+	agentId: String!
+	prescribers: [String!]!
+}
+
+type PrescribersToPatientResponse {
+	patientId: ID
+	agentId: String
+	prescribers: [String]
+}
+
+type Prescription {
+	doctorName: String
+	dosage: String
+	drug: String
+	frequency: String
+	orderDates: String
+	preferredContactMethod: [String]
+}
+
+input PrescriptionInput {
+	doctorName: String!
+	dosage: String!
+	drug: String!
+	frequency: String!
+	orderDates: String!
+	preferredContactMethod: [String]
+}
+
+type PrimaryDX {
+	primaryDiagnosis: String
+	description: String
+	diagnosedBy: String
+}
+
+input PrimaryDXInput {
+	primaryDiagnosis: String
+	description: String
+	diagnosedBy: String
+}
+
+type PriorAuthChecking {
+	referralId: String
+	insuranceKey: String
+	stat: Boolean
+	authStatus: ApprovalStatus
+	approvalInfo: ApprovalInfo
+	requestHistory: PARequestRecord
+	welcomeCalls: [CallRecord]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+	isCompleted: Boolean
+}
+
+input PriorAuthCheckingInput {
+	referralId: String!
+	insuranceKey: String!
+	stat: Boolean
+	authStatus: ApprovalStatus
+	approvalInfo: ApprovalInfoInput
+	requestHistory: PARequestRecordInput!
+	welcomeCalls: [CallRecordInput]
+	welcomeCallCompleted: Boolean
+	callCompletionTime: AWSDateTime
+	isCompleted: Boolean!
+}
+
+type PriorAuthDenialTracking {
+	referralId: String
+	insuranceKey: String
+	denialReason: String
+	mdoContacted: Boolean
+}
+
+input PriorAuthDenialTrackingInput {
+	referralId: String!
+	insuranceKey: String!
+	denialReason: String!
+	mdoContacted: Boolean
+}
+
+type PriorAuthorization {
+	freeDrugs: [FreeDrug]
+	denialTrackings: [PriorAuthDenialTracking]
+	priorAuthCheckings: [PriorAuthChecking]
+}
+
+input PriorAuthorizationInput {
+	freeDrugs: [FreeDrugInput]
+	denialTrackings: [PriorAuthDenialTrackingInput]
+	priorAuthCheckings: [PriorAuthCheckingInput]
+}
+
+type ProcedureCode {
+	code: String
+	units: Int
+}
+
+input ProcedureCodeInput {
+	code: String
+	units: Int
+}
+
+type Product {
+	productId: ID!
+	productName: String!
+	vendor: String
+	price: Float
+	status: String
+	strength: String
+	dosing: String
+	route: RouteType
+	unitOfMeas: DosageUnit
+	frequency: String
+	scheduledAllotment: String
+	premedications: [PreMedication]
+	typeOfProduct: ProductType
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type ProductInventory {
+	id: ID!
+	locationId: ID!
+	lotNumber: String!
+	productId: ID!
+	productName: String
+	price: Float
+	currentQuantity: Int
+	initialQuantity: Int!
+	expirationDate: AWSDate!
+	receivedBy: String
+	updatedBy: String
+	strengthPerVial: Float
+	unitOfMeasure: String
+	vendor: String
+	status: InventoryStatus
+	freeDrug: Boolean
+	expirationTimeStamp: Int
+	receivedTimestamp: Int
+	updateHistory: [InventoryUpdateRecord]
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+input ProductInventoryUpdateInput {
+	inventoryId: String!
+	beforeQuantity: Int
+	afterQuantity: Int
+	reason: String
+	notes: String
+	updatedBy: String
+}
+
+type ProductItem {
+	fromInventoryId: String
+	ndcNumber: String
+	productName: String
+	lotNumber: String
+	vendor: String
+	expirationDate: AWSDate!
+	price: Float
+	quantity: Int
+}
+
+input ProductItemInput {
+	fromInventoryId: String!
+	ndcNumber: String!
+	productName: String
+	lotNumber: String!
+	vendor: String
+	expirationDate: AWSDate!
+	price: Float
+	quantity: Int!
+	productOrderId: String
+}
+
+type ProductOrder {
+	id: ID!
+	locationId: ID
+	productName: String
+	dose: Int
+	unitOfMeasure: String
+	productId: ID!
+	orderQuantity: Int
+	orderDate: AWSDateTime
+	orderedBy: String
+	initialQuantity: Int
+	orderTimestamp: Int
+	orderStatus: ProductOrderStatus
+	updatedAt: AWSDateTime
+	updatedBy: String
+	createdAt: AWSDateTime!
+}
+
+input ProductOrderInput {
+	orderId: ID!
+	quantity: Int!
+}
+
+enum ProductOrderStatus {
+	NOT_REQUESTED
+	REQUESTED
+	ORDERED
+	FULFILLED
+	PARTIALLY_FULFILLED
+}
+
+type ProductShipmentResp {
+	groupName: String
+	locationName: String
+	productId: String
+	productName: String
+	productDose: String
+	unitOfDose: String
+	quantity: Int
+	productOrderId: String
+}
+
+type ProductShipping {
+	id: ID!
+	shippedDate: AWSDateTime
+	trackingNumber: String
+	shippedBy: String
+	shippingCompany: String
+	shippingToLocationId: String
+	shippingStatus: ShippingStatus
+	items: [ProductItem]
+	productOrderIds: [String]
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+enum ProductType {
+	PRESCRIPTION
+	PREMED
+	DILUENT
+	MIXIN
+}
+
+enum ProfessionalType {
+	MD
+	DO
+	NP
+}
+
+type ProviderAIC {
+	providerNPI: ID!
+	firstName: String
+	lastName: String
+	middleName: String
+	suffix: Suffix
+	cignaId: String
+	unitedId: String
+	aetnaId: String
+	sex: Sex
+	type: ProfessionalType
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type ProviderResp {
+	providerNPI: ID
+	locationId: ID
+	firstName: String
+	lastName: String
+	sex: Sex
+	type: ProfessionalType
+}
+
+type Query {
+	getPatientPayments(patientId: ID!): [PaymentRecord]
+	getBenefitChecking(patientId: ID!, referralId: String!, insuranceKey: String!): GetBenefitCheckingResp
+	getBenefitCheckingHistory(patientId: ID!, recordId: String): [BIUpdateRecord]
+	getPriorAuthorization(patientId: ID!, referralId: String!, insuranceKey: String!): GetPriorAuthorizationResp
+	getWorkItemsByGroupQueue(groupQueueId: ID!): [WorkItemResp]
+	getWorkItemsByAgent(agentId: ID!, workQueue: GroupQueue): [WorkItemResp]
+	getWorkItemsByPatient(patientId: ID!): [WorkItemResp]
+	getAgent(agentId: ID!): AgentResp
+	getWorkItemsFromScheduleQueue(agentId: ID!, workQueue: GroupQueue, period: DateRange!): [WorkItemFromScheduleQueueResp]
+	getScheduleEventsByLocationId(locationId: String!, period: DateRange!, excludeStatus: [EventStatus!]): ScheduleEventResp
+	getWorkItemsFromNursingQueue(agentId: ID!, locationId: String!, period: DateRange!): WorkItemFromNursingQueueResp
+	getChairStateByLocationId(locationId: String!): ChairStateResp
+	getScheduledEventsForOrder(appointmentDate: AWSDate): ScheduledEventsForOrderResp
+	getRequestedProductOrders(period: DateRange!): [RequestedProductOrder]
+	getProductShipments(locationId: String!, period: DateRange!): [ProductShipmentResp]
+	getUser(userId: ID!, role: Role!): User
+	listUsers(
+		userId: ID,
+		role: ModelStringKeyConditionInput,
+		filter: ModelUserFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelUserConnection
+	getPatientBucket(patientId: ID!): PatientBucket
+	listPatientBuckets(
+		patientId: ID,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelPatientBucketConnection
+	getCase(caseId: ID!): Case
+	listCases(
+		caseId: ID,
+		filter: ModelCaseFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelCaseConnection
+	getActivity(id: ID!): Activity
+	listActivitys(filter: ModelActivityFilterInput, limit: Int, nextToken: String): ModelActivityConnection
+	getWorkItem(id: ID!): WorkItem
+	listWorkItems(filter: ModelWorkItemFilterInput, limit: Int, nextToken: String): ModelWorkItemConnection
+	getCommunicationHistory(id: ID!): CommunicationHistory
+	listCommunicationHistorys(
+		id: ID,
+		filter: ModelCommunicationHistoryFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelCommunicationHistoryConnection
+	getProviderAIC(providerNPI: ID!): ProviderAIC
+	listProviderAICs(
+		providerNPI: ID,
+		filter: ModelProviderAICFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelProviderAICConnection
+	getGroupInsurerLocationProviderAIC(id: ID!): GroupInsurerLocationProviderAIC
+	listGroupInsurerLocationProviderAICs(filter: ModelGroupInsurerLocationProviderAICFilterInput, limit: Int, nextToken: String): ModelGroupInsurerLocationProviderAICConnection
+	getGroupAIC(id: ID!): GroupAIC
+	listGroupAICs(filter: ModelGroupAICFilterInput, limit: Int, nextToken: String): ModelGroupAICConnection
+	getLocationAIC(id: ID!): LocationAIC
+	listLocationAICs(filter: ModelLocationAICFilterInput, limit: Int, nextToken: String): ModelLocationAICConnection
+	getPrescriberInfo(NPINumber: ID!): PrescriberInfo
+	listPrescriberInfos(
+		NPINumber: ID,
+		filter: ModelPrescriberInfoFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelPrescriberInfoConnection
+	getProduct(productId: ID!): Product
+	listProducts(
+		productId: ID,
+		filter: ModelProductFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelProductConnection
+	getInsurerAIC(id: ID!): InsurerAIC
+	listInsurerAICs(filter: ModelInsurerAICFilterInput, limit: Int, nextToken: String): ModelInsurerAICConnection
+	getPayer(id: ID!): Payer
+	listPayers(filter: ModelPayerFilterInput, limit: Int, nextToken: String): ModelPayerConnection
+	getEvent(id: ID!): Event
+	listEvents(
+		id: ID,
+		filter: ModelEventFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelEventConnection
+	getNursingProcess(id: ID!): NursingProcess
+	listNursingProcesss(
+		id: ID,
+		filter: ModelNursingProcessFilterInput,
+		limit: Int,
+		nextToken: String,
+		sortDirection: ModelSortDirection
+	): ModelNursingProcessConnection
+	getProductInventory(id: ID!): ProductInventory
+	listProductInventorys(filter: ModelProductInventoryFilterInput, limit: Int, nextToken: String): ModelProductInventoryConnection
+	getProductShipping(id: ID!): ProductShipping
+	listProductShippings(filter: ModelProductShippingFilterInput, limit: Int, nextToken: String): ModelProductShippingConnection
+	getProductOrder(id: ID!): ProductOrder
+	listProductOrders(filter: ModelProductOrderFilterInput, limit: Int, nextToken: String): ModelProductOrderConnection
+	getPatientBucketByLastNameDob(
+		patientLastName: String,
+		dob: ModelStringKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPatientBucketConnection
+	getPatientBucketByLastNamePhone(
+		patientLastName: String,
+		homePhoneNumber: ModelStringKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPatientBucketConnection
+	getPatientBucketByLastName(
+		patientLastName: String,
+		sortDirection: ModelSortDirection,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPatientBucketConnection
+	getBucketByAgg(
+		aggregateAttribute: String,
+		sortDirection: ModelSortDirection,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPatientBucketConnection
+	getPatientBucketByName(
+		patientLastName: String,
+		patientFirstName: ModelStringKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelPatientBucketFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPatientBucketConnection
+	getCasesByAgentIdAndStatus(
+		currentAssignedAgentId: String,
+		caseStatus: ModelStringKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelCaseFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelCaseConnection
+	getCaseByPatientId(
+		patientId: ID,
+		sortDirection: ModelSortDirection,
+		filter: ModelCaseFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelCaseConnection
+	getHistoryRecordsByStatus(
+		status: CommunicationStatus,
+		sortDirection: ModelSortDirection,
+		filter: ModelCommunicationHistoryFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelCommunicationHistoryConnection
+	getHistoryByFaxId(
+		faxId: String,
+		sortDirection: ModelSortDirection,
+		filter: ModelCommunicationHistoryFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelCommunicationHistoryConnection
+	getPayersByInsurerName(
+		insurerName: String,
+		planName: ModelStringKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelPayerFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPayerConnection
+	getPayerByPlanName(
+		planName: String,
+		sortDirection: ModelSortDirection,
+		filter: ModelPayerFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelPayerConnection
+	getTreatmentHistoryByPatient(
+		patientId: ID,
+		startTimestamp: ModelIntKeyConditionInput,
+		sortDirection: ModelSortDirection,
+		filter: ModelNursingProcessFilterInput,
+		limit: Int,
+		nextToken: String
+	): ModelNursingProcessConnection
+}
+
+enum ReasonArchivingOrder {
+	ORDER_EXPIRED
+	PATIENT_DISCONTINUED_TREATMENT
+	DOCTOR_DISCONTINUED_THERAPY
+	WRONG_DRUG
+	WRONG_DOSE
+	NEW_ORDER_RECEIVED
+}
+
+enum ReasonType {
+	PATIENT_CANNOT_AFFORD_COPAY
+	PATIENT_REASON
+	INSURANCE_REASON
+	PHYSICIAN_REASON
+}
+
+input ReassignWorkInput {
+	currentAgentId: String!
+	reassignedToAgentId: String
+	workItemId: String!
+	reassignedToQueueId: GroupQueue
+}
+
+input ReceivedProductInput {
+	receivedTime: AWSDateTime!
+	ndcNumber: String!
+	productName: String
+	strength: String!
+	unitOfMeas: String!
+	lotNumber: String!
+	vendor: String
+	expirationDate: AWSDate!
+	price: Float
+	quantity: Int!
+	freeDrug: Boolean!
+}
+
+type ReconciliationRecord {
+	date: AWSDate
+	beforeQuantity: Int
+	afterQurantity: Int
+	reason: String
+	madeBy: String
+	notes: String
+}
+
+type ReconstituteRecord {
+	recordNumber: Int
+	fluid: String
+	quantity: Int
+	lot: String
+	expiration: AWSDate
+}
+
+input ReconstituteRecordInput {
+	recordNumber: Int
+	fluid: String
+	quantity: Int
+	lot: String
+	expiration: AWSDate
+}
+
+type Referral {
+	drugReferrals: [DrugReferral]
+	archivedDrugReferrals: [OrderHistoryRecord]
+}
+
+input ReferralInput {
+	drugReferrals: [DrugReferralInput]!
+}
+
+enum ReferralType {
+	ORDER
+	PRESCRIPTION
+}
+
+input ReleaseWorkInput {
+	agentId: String!
+	caseId: String
+	workItemId: String!
+	workStatus: TaskStatus!
+}
+
+type RequestForOrderResp {
+	statusCode: String
+	orders: [ProductOrder]
+	message: String
+}
+
+input RequestWorkInput {
+	agentId: String!
+	caseId: String
+	workItemId: String!
+	actionToTake: WorkAction
+}
+
+type RequestedProductOrder {
+	productOrder: ProductOrder
+	quantityInStock: Int
+}
+
+enum Role {
+	INTAKE
+	BI
+	PA
+	NURSING
+	SCHEDULE
+	SUPERVISOR
+	ADMIN
+}
+
+enum RouteType {
+	IV
+	SUBQ
+	IM
+	PO
+}
+
+type ScheduleEventResp {
+	statusCode: String!
+	message: String
+	events: [EventOutput]
+}
+
+type ScheduledEventsForOrderResp {
+	statusCode: String
+	scheduledEvents: [EventForOrder]
+}
+
+enum SchedulingType {
+	STANDARD
+	PRIORITY
+	PRIORITY_ANTIBIOTIC
+}
+
+enum Sex {
+	M
+	F
+}
+
+input ShippingProductInput {
+	shippedDate: AWSDateTime
+	trackingNumber: String!
+	shippingCompany: String!
+	shippingToLocationId: String
+	items: [ProductItemInput]
+}
+
+enum ShippingStatus {
+	SHIPPED
+	IN_TRANSIT
+	RECEIVED
+}
+
+type Stage {
+	stage: CaseStage
+	status: StageStatus
+	referralId: String
+	insuranceKey: String
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+}
+
+input StageInput {
+	stage: CaseStage
+	status: StageStatus
+	referralId: String
+	insuranceKey: String
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+}
+
+enum StageStatus {
+	BLOCKED
+	COMPLETED
+	DISCARDED
+	INITIATED
+	IN_PROGRESS
+}
+
+enum Status {
+	APPROVED
+	DENIED
+	IN_PROGRESS
+	PENDING
+}
+
+type StatusDetails {
+	isIntakeCompleted: Boolean
+	isBICompleted: Boolean
+	isPACompleted: Boolean
+	updateDate: AWSDateTime
+}
+
+input StatusDetailsInput {
+	isIntakeCompleted: Boolean
+	isBICompleted: Boolean
+	isPACompleted: Boolean
+	updateDate: AWSDateTime
+}
+
+type StatusResp {
+	statusCode: String!
+	message: String
+}
+
+type StepAdministration {
+	ivDrugs: [IVDrugRecord]
+	imDrugs: [IMDrugRecord]
+	vitals: [VitalRecord]
+	otherIVDrugs: [IVDrugRecord]
+	administrationComplete: Boolean
+}
+
+input StepAdministrationInput {
+	ivDrugs: [IVDrugRecordInput]
+	imDrugs: [IMDrugRecordInput]
+	vitals: [VitalRecordInput]
+	otherIVDrugs: [IVDrugRecordInput]
+	administrationComplete: Boolean
+}
+
+type StepAssessment {
+	patientWeights: [PatientWeightRecord]
+	vitals: [VitalRecord]
+	allergies: [AllergyRecord]
+	noAssessmentToday: Boolean
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime
+	questionnaire: AWSJSON
+}
+
+type StepAssessmentInitData {
+	patientWeights: [PatientWeightRecord]
+	allergies: [AllergyRecord]
+}
+
+input StepAssessmentInput {
+	patientWeights: [PatientWeightRecordInput]
+	vitals: [VitalRecordInput]
+	allergies: [AllergyRecordInput]
+	noAssessmentToday: Boolean
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime
+	questionnaire: AWSJSON
+}
+
+type StepCheckIn {
+	checkInPatient: Boolean
+	verifiedDoB: Boolean
+	agentId: ID
+}
+
+input StepCheckInInput {
+	eventId: ID!
+	patientId: ID!
+	agentId: ID!
+	locationId: ID!
+	chairId: ID!
+	providerId: ID!
+	referralId: ID!
+	checkInPatient: Boolean!
+	verifiedDoB: Boolean!
+	notes: String
+}
+
+type StepCloseTreatment {
+	departureVital: [VitalRecord]
+	departureTime: AWSDateTime
+	closeTreatmentNote: String
+	signature: String
+	password: String
+}
+
+input StepCloseTreatmentInput {
+	departureVital: [VitalRecordInput]
+	departureTime: AWSDateTime
+	closeTreatmentNote: String
+	signature: String
+	password: String
+}
+
+type StepOrderReviewInitData {
+	referralOrder: Order
+	pathOfOrderPDF: String
+}
+
+type StepPreTreatment {
+	preMedications: [PreMedicationRecord]
+	piv: [PIVRecord]
+	picc: [PICCRecord]
+	port: [PortRecord]
+	lineFlush: [LineFlushRecord]
+	noAssessmentToday: Boolean
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime
+	preTreatmentCompleted: Boolean
+}
+
+type StepPreTreatmentInitData {
+	preMedications: [PreMedicationRecord]
+}
+
+input StepPreTreatmentInput {
+	preMedications: [PreMedicationRecordInput]
+	piv: [PIVRecordInput]
+	picc: [PICCRecordInput]
+	port: [PortRecordInput]
+	lineFlush: [LineFlushRecordInput]
+	noAssessmentToday: Boolean
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime
+	preTreatmentCompleted: Boolean
+}
+
+type StepPreparation {
+	notes: String
+	drugs: [DrugRecord]
+	diluent: [DiluentRecord]
+	reconstitutedIn: [ReconstituteRecord]
+	preparationComplete: Boolean
+	noMedsAdministrated: Boolean
+}
+
+type StepPreparationInitData {
+	drugId: ID!
+	drugName: String
+	referralOrder: Order!
+}
+
+input StepPreparationInput {
+	notes: String
+	drugs: [DrugRecordInput]
+	diluent: [DiluentRecordInput]
+	reconstitutedIn: [ReconstituteRecordInput]
+	preparationComplete: Boolean
+	noMedsAdministrated: Boolean
+}
+
+type StepReview {
+	orderApproved: Boolean!
+	patientConsentReceived: Boolean!
+	addendumOrderFilePath: String
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime!
+}
+
+input StepReviewInput {
+	orderApproved: Boolean!
+	patientConsentReceived: Boolean!
+	addendumOrderFilePath: String
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime!
+}
+
+enum Suffix {
+	Mr
+	Dr
+	Ms
+}
+
+enum Task {
+	OUTBOUND_CALL
+	SEND_EMAIL
+	SEND_FAX
+	ADMINISTRATION
+	SCHEDULE
+	BENEFIT_INVESTIGATION
+	ENROLLMENT
+	INTAKE
+	PAP
+	PRIOR_AUTHORIZATION
+	RE_VERIFICATION
+	NURSING
+	INVENTORY
+	PROCESSING_FAX
+	FOLLOW_UP
+	CLINICIAN_REVIEW
+}
+
+enum TaskStatus {
+	CREATED
+	COMPLETED
+	IN_PROGRESS
+	STARTED
+	BLOCKED
+	CANCELED
+	REASSIGNED
+}
+
+enum TimeZone {
+	HDT
+	AKDT
+	PDT
+	MDT
+	CDT
+	EDT
+}
+
+type Treatment {
+	firstTreatmentDate: String
+	nextTreatmentDate: String
+	numberOfTreatments: Int
+}
+
+type TreatmentCost {
+	billFromHCP: String
+	date: AWSDateTime
+	insuranceAmount: Float
+	patientAmount: Float
+	pharmacyAmount: Float
+	treatmentAmount: Float
+}
+
+input TreatmentCostInput {
+	billFromHCP: String
+	date: AWSDateTime
+	insuranceAmount: Float
+	patientAmount: Float
+	pharmacyAmount: Float
+	treatmentAmount: Float
+}
+
+type TreatmentHistoryResp {
+	statusCode: String!
+	message: String
+	treatments: [TreatmentRecord]
+}
+
+input TreatmentInput {
+	firstTreatmentDate: String
+	nextTreatmentDate: String
+	numberOfTreatments: Int!
+}
+
+type TreatmentRecord {
+	treatmentDate: AWSDateTime
+	orderName: String
+	treatmentStatus: String
+	faxSentTime: AWSDateTime
+}
+
+input TreatmentStepInput {
+	nursingProcessId: ID!
+}
+
+input UpdateActivityInput {
+	id: ID!
+	caseId: ID
+	activityName: String
+	agentId: String
+	patientId: String
+	description: String
+	loggingTime: AWSDateTime
+	attachedData: AWSJSON
+}
+
+input UpdateEventInput {
+	id: ID!
+	title: String
+	status: EventStatus
+	createdBy: ID
+	updatedBy: ID
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	locationId: ID
+	chairId: ID
+	patientId: ID
+	referralId: String
+	providerId: ID
+	agentId: ID
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone
+	endTimeZone: TimeZone
+	reason: String
+	startTimestamp: Int
+	endTimestamp: Int
+	productOrderStatus: ProductOrderStatus
+	adminSequenceNumber: Int
+	eligibilityStatus: EligibilityStatus
+}
+
+input UpdateGroupAICInput {
+	id: ID!
+	name: String
+	taxId: ID
+	state: String
+	billingAddress: AddressInput
+	phoneNumber: AWSPhone
+	faxNumber: AWSPhone
+}
+
+input UpdateGroupInsurerLocationProviderAICInput {
+	id: ID!
+	groupId: ID
+	locationId: ID
+	insurerId: ID
+	providerId: ID
+	insurerPlanId: String
+	insurerPIN: String
+	locationNPI: String
+	locationPTAN: String
+	locationEffectiveDate: AWSDate
+	locationEndDate: AWSDate
+	locationStatus: Status
+	providerEffectiveDate: AWSDate
+	providerEndDate: AWSDate
+	providerStatus: Status
+	providerPTAN: String
+	notes: String
+}
+
+input UpdateInsurerAICInput {
+	id: ID!
+	name: String
+	taxId: String
+	insurerType: String
+	billingAddress: AddressInput
+	mainPhoneNumber: AWSPhone
+}
+
+input UpdateLocationAICInput {
+	id: ID!
+	locationName: String
+	address: AddressInput
+	state: String
+	county: String
+	notes: [ClinicalNoteInput]
+	billingAddress: AddressInput
+	chairs: [ChairInput]
+	timeZone: String
+	officeHours: [OfficeHourInput]
+	holidays: [AWSDate]
+	specialTimeSlots: [OfficeHourInput]
+}
+
+input UpdatePatientBucketInput {
+	agentId: ID
+	benefitInvestigation: BenefitInvestigationInput
+	dob: AWSDate
+	patientFirstName: String
+	patientMiddleName: String
+	homePhoneNumber: String
+	patientLastName: String
+	patientAssistantProgram: PatientAssistantProgramInput
+	patientId: ID!
+	patientProfile: PatientProfileInput
+	priorAuthorization: PriorAuthorizationInput
+	referral: ReferralInput
+	patientDocuments: [PatientDocumentInput]
+	notes: [NoteInput]
+	aggregateAttribute: String
+}
+
+input UpdatePatientToPrescriberInput {
+	patientId: ID!
+	prescriberId: ID!
+}
+
+input UpdatePayerInput {
+	id: ID!
+	planName: String
+	insurerId: ID
+	insurerName: String
+	tradingPatnerId: String
+	providerPhone: AWSPhone
+	claimAddress: AddressInput
+	electronicPayerId: String
+	timelyFillingINN: Int
+	timelyFillingOON: Int
+	externalId: String
+}
+
+input UpdatePrescriberInfoInput {
+	medicalSpecialty: String
+	officeContactFirstName: String
+	officeContactLastName: String
+	siteInstitutionName: String
+	taxIDNumber: String
+	officeEmail: AWSEmail
+	officeAddresses: AddressInput
+	officePhoneNumber: AWSPhone
+	officeFaxNumber: AWSPhone
+	preferredPrescriberContactMethod: ContactMethod
+	prescriberFirstName: String
+	prescriberMiddleName: String
+	prescriberLastName: String
+	NPINumber: ID!
+	additionalOfficeAddresses: [AddressInput]
+	HINNumber: String
+	officeContactName: String
+	notes: [NoteInput]
+}
+
+input UpdateProductInput {
+	productId: ID!
+	productName: String
+	vendor: String
+	price: Float
+	status: String
+	strength: String
+	dosing: String
+	route: RouteType
+	unitOfMeas: DosageUnit
+	frequency: String
+	scheduledAllotment: String
+	premedications: [PreMedicationInput]
+	typeOfProduct: ProductType
+}
+
+input UpdateProviderAICInput {
+	providerNPI: ID!
+	firstName: String
+	lastName: String
+	middleName: String
+	suffix: Suffix
+	cignaId: String
+	unitedId: String
+	aetnaId: String
+	sex: Sex
+	type: ProfessionalType
+}
+
+input UpdateReferral {
+	agentId: ID!
+	patientId: ID!
+	referral: ReferralInput!
+}
+
+input UpdateScheduleEventInput {
+	id: ID!
+	title: String!
+	status: EventStatus
+	createdBy: ID!
+	updatedBy: ID
+	startTime: AWSDateTime!
+	endTime: AWSDateTime!
+	locationId: ID!
+	chairId: ID!
+	patientId: ID!
+	referralId: String!
+	adminSequenceNumber: Int
+	providerId: ID!
+	agentId: ID!
+	resources: [String]
+	notes: String
+	startTimeZone: TimeZone!
+	endTimeZone: TimeZone!
+}
+
+input UpdateStepAdministrationInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	notes: [String]
+	ivDrugs: [IVDrugRecordInput]
+	imDrugs: [IMDrugRecordInput]
+	vitals: [VitalRecordInput]
+	otherIVDrugs: [IVDrugRecordInput]
+	administrationComplete: Boolean
+}
+
+input UpdateStepAssessmentInput {
+	nursingProcessId: ID!
+	patientWeights: [PatientWeightRecordInput]!
+	vitals: [VitalRecordInput]!
+	allergies: [AllergyRecordInput]!
+	noAssessmentToday: Boolean
+	agentId: ID!
+	notes: [String]
+	questionnaire: AWSJSON
+}
+
+input UpdateStepCloseTreatmentInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	notes: [String]
+	departureVital: [VitalRecordInput]
+	departureTime: AWSDateTime
+	closeTreatmentNote: String
+	signature: String
+	password: String
+}
+
+input UpdateStepOrderReviewInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	addendumOrderFilePath: String
+	orderIsApproved: Boolean!
+	patientConsentReceived: Boolean!
+	notes: [String]
+}
+
+input UpdateStepPreTreatmentInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	notes: [String]
+	preMedications: [PreMedicationRecordInput]
+	piv: [PIVRecordInput]
+	picc: [PICCRecordInput]
+	port: [PortRecordInput]
+	lineFlush: [LineFlushRecordInput]
+	executedBy: ID!
+	lastUpdatedTime: AWSDateTime
+	preTreatmentCompleted: Boolean
+}
+
+input UpdateStepPreparationInput {
+	nursingProcessId: ID!
+	agentId: ID!
+	notes: [String]
+	drugs: [DrugRecordInput]
+	diluent: [DiluentRecordInput]
+	reconstitutedIn: [ReconstituteRecordInput]
+	preparationComplete: Boolean
+	noMedsAdministrated: Boolean
+}
+
+input UpdateWorkItemInput {
+	id: ID!
+	caseId: ID
+	work: Task
+	workStatus: TaskStatus
+	createdBy: String
+	assignedTo: String
+	patientId: String
+	description: String
+	referralId: String
+	endTime: AWSDateTime
+	startTime: AWSDateTime
+	targetTime: AWSDateTime
+	processId: String
+	currentStep: String
+	followupDate: AWSDate
+	attachedData: AWSJSON
+	priority: Int
+	groupQueueId: GroupQueue
+	workHistory: [WorkRecordInput]
+}
+
+type Usage {
+	amount: Float
+	resetDate: String
+}
+
+input UsageInput {
+	amount: Float
+	resetDate: String
+}
+
+type User {
+	userId: ID!
+	role: Role!
+	lastName: String
+	firstName: String
+	aclRule: String
+	queueDepth: Int
+	defaultRole: Boolean
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type VitalRecord {
+	recordNumber: Int
+	enteredAt: AWSDateTime
+	temperature: Float
+	bloodPressure: String
+	heartRate: Float
+	R: Float
+	SP02: Float
+	initials: String
+}
+
+input VitalRecordInput {
+	recordNumber: Int
+	enteredAt: AWSDateTime
+	temperature: Float
+	bloodPressure: String
+	heartRate: Float
+	R: Float
+	SP02: Float
+	initials: String
+}
+
+enum WeekDay {
+	MONDAY
+	TUESDAY
+	WEDNESDAY
+	THURSDAY
+	FRIDAY
+	SATURDAY
+	SUNDAY
+}
+
+enum WeightUnit {
+	LB
+	KG
+}
+
+enum WorkAction {
+	VIEW
+	EDIT
+}
+
+type WorkItem {
+	id: ID!
+	caseId: ID!
+	work: Task!
+	workStatus: TaskStatus
+	createdBy: String!
+	assignedTo: String!
+	patientId: String
+	description: String
+	referralId: String
+	endTime: AWSDateTime
+	startTime: AWSDateTime!
+	targetTime: AWSDateTime
+	processId: String
+	currentStep: String
+	followupDate: AWSDate
+	attachedData: AWSJSON
+	priority: Int
+	groupQueueId: GroupQueue
+	workHistory: [WorkRecord]
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type WorkItemFromNursingQueue {
+	id: ID!
+	dateAdded: AWSDateTime
+	patientFirstName: String
+	patientLastName: String
+	orderName: String
+	orderStatus: String
+	patientId: String
+	scheduledStartTime: AWSDateTime
+	scheduledEndTime: AWSDateTime
+	locationId: String
+	providerFirstName: String
+	providerLastName: String
+	referralId: String
+	chairName: String
+	chairId: String
+	scheduleEventId: String
+}
+
+type WorkItemFromNursingQueueResp {
+	statusCdde: String!
+	message: String
+	workItems: [WorkItemFromNursingQueue]
+}
+
+type WorkItemFromScheduleQueueResp {
+	id: ID!
+	dateAdded: AWSDateTime
+	patientFirstName: String
+	patientLastName: String
+	orderName: String
+	orderType: String
+	drugType: String
+	status: String
+	patientId: String
+	followupDate: AWSDate
+	medicare: Boolean
+	locationAndProviders: [LocationAndProvider]
+	freeDrug: Boolean
+	referralId: String
+}
+
+type WorkItemResp {
+	id: ID!
+	caseId: ID!
+	work: Task!
+	workStatus: TaskStatus
+	createdBy: String!
+	assignedTo: String!
+	patientId: String
+	patientFirstName: String
+	patientLastName: String
+	agentFirstName: String
+	agentLastName: String
+	description: String
+	referralId: String
+	endTime: AWSDateTime
+	startTime: AWSDateTime!
+	targetTime: AWSDateTime
+	followupDate: AWSDate
+	createdAt: AWSDateTime!
+	attachedData: AWSJSON
+	priority: Int
+	documentURI: String
+	source: String
+	groupQueueId: GroupQueue
+}
+
+type WorkRecord {
+	agentId: String
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	lastWorkStatus: TaskStatus
+}
+
+input WorkRecordInput {
+	agentId: String
+	startTime: AWSDateTime
+	endTime: AWSDateTime
+	lastWorkStatus: TaskStatus
+}
+
+type WorkResponse {
+	success: Boolean
+	details: String
+	workItem: WorkItem
+}

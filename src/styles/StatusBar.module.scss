@@ -1,0 +1,55 @@
+.hr {
+    background-color: #1f7eb4!important;
+    margin: 0.75rem;
+    margin-right: .5rem;
+}
+
+.title {
+    background-color: #8cbeec!important;
+    margin-left:  .5rem;
+    margin-right: .5rem;
+    align-content: center!important;
+
+}
+
+.colored-icon {
+    color: green;
+}
+
+.category {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.status {
+    width: 4px;
+    margin-right: 7px;
+}
+
+.categoryItem{ 
+    display: flex;
+    margin-left: 2.0rem;
+}
+
+.categoryChip{ 
+    display: flex;
+    margin-left: .25rem;
+    margin-top: .25rem;
+}
+
+.followUpButton {
+    background-color: #2AA0FD !important;
+}
+
+.orange{
+    background-color: orange;
+}
+.green {
+    background-color: #2ed22e;
+}
+.red {
+    background-color: red;
+}
+.yellow{
+    background-color: yellow;
+}
